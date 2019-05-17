@@ -3,3 +3,5 @@ A Tower Defense game where the enemies can choose their own path from their star
 ## How To Run
 TODO
 ## Development Log
+####5/17/19
+Amit: Added most enemy variables and basic methods, as well as the same for world methods and variables.
