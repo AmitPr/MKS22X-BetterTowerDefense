@@ -1,11 +1,11 @@
 abstract class Tower extends Obstacle {
   Bullet bullet;
-  Float hp;
-  Float x;
-  Float y;
-  Float range;
-  Float RoF;
-  Float maxHp;
-  Float Hp;
-  Float timeTillNextFire;
+  float hp;
+  float x;
+  float y;
+  float range;
+  float RoF;
+  float maxHp;
+  float Hp;
+  float timeTillNextFire;
 }

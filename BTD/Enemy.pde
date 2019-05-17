@@ -17,4 +17,7 @@ class Enemy{
   public void damage(float damageAmount){
    this.health-=damageAmount; 
   }
-}s
+  public void draw(){
+    
+  }
+}
