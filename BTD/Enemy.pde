@@ -1,4 +1,4 @@
-class Enemy{
+abstract class Enemy{
   
   private float health;
   private float x;
@@ -18,6 +18,8 @@ class Enemy{
    this.health-=damageAmount; 
   }
   public void display(){
-    
+    ellipseMode(RADIUS);
+    fill(255,255,0);
+    ellipse(x,y,30,30);
   }
 }
