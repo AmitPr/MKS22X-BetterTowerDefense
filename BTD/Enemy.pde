@@ -3,8 +3,15 @@ abstract class Enemy{
   private float health;
   private float x;
   private float y;
-  private color c;
   private float speed;
+  private float r,g,b;
+  
+  public Enemy(float x, float y, float health){
+    this.x=x;
+    this.y=y;
+    this.health=health;
+    r=g=b=random(255);
+  }
   
   public float getX(){return x;}
   public void setX(float x){this.x=x;}
@@ -19,7 +26,7 @@ abstract class Enemy{
   }
   public void display(){
     ellipseMode(RADIUS);
-    fill(255,255,0);
-    ellipse(x,y,30,30);
+    fill(r,g,b);
+    ellipse(width/BTD.WORLD_WIDTH*(x+0.5),height/BTD.WORLD_HEIGHT*(y+0.5),width/BTD.WORLD_WIDTH/2,height/BTD.WORLD_HEIGHT/2);
   }
 }

@@ -4,7 +4,7 @@ class World{
   public Obstacle[][] map;
   
   public World(){
-    map = new Obstacle[40][40]; 
+    map = new Obstacle[BTD.WORLD_WIDTH][BTD.WORLD_HEIGHT]; 
     map[38][38]=new Player(38,38,100);
     map[0][0]=new EnemyBase(0,0,100);
     for(int y = 0; y < map.length; y++){
@@ -16,7 +16,7 @@ class World{
         }
       }
     }
-    enemies.add(new Enemy(54,68));
+    enemies.add(new Balloon(33,24,1));
   }
   
   public Obstacle[][] getMap(){

@@ -4,6 +4,6 @@ public class EnemyBase extends Tower{
   }
   public void display(){
     fill(255,0,0);
-    rect(width/40 * x,height/40*y,width/20,height/20); 
+    rect(width/BTD.WORLD_WIDTH * x,height/BTD.WORLD_HEIGHT*y,width/BTD.WORLD_WIDTH*2,height/BTD.WORLD_HEIGHT*2); 
   }
 }
