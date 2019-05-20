@@ -19,11 +19,15 @@ class World{
    return map[my][mx];
   }
   public void tick(){
-     for(Tower t : towers){
-       t.draw();
-     }
-     for(Enemy e : enemies){
-       e.draw();
-     }
+    for(int y = 0; y < map.length; y++){
+      for(int x = 0; x < map[y].length;x++){
+         if(map[y][x]!=null){
+            map[y][x].display(); 
+         }
+      }
+    }
+    for(Enemy e : enemies){
+      e.display();
+    }
   }
 }

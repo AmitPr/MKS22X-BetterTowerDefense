@@ -5,7 +5,7 @@ abstract class Bullet{
   float y;
   float dx;
   float dy;
-  void draw(){
+  void display(){
     
   }
   void dealDamage(){
