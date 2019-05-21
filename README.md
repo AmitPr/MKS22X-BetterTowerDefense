@@ -8,3 +8,7 @@ Amit: Added most enemy variables and basic methods, as well as the same for worl
 Mario: Added most tower variables and basic methods such as fire and display.
 #### 5/20/19
 Amit & Mario: Added display and scaling methods, created some test towers and enemies. Fixed enemy display bug where they wouldn't display in the middle.
+#### 5/21/19
+Amit: Added Some basic structure for towers and enemies, added screenToWorld grid scaling functions, mouse click to add towers to the map.
+Amit & Mario: Added smooth enemy movement between tiles
+Mario:
