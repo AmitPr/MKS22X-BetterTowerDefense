@@ -4,19 +4,20 @@ class World{
   public Obstacle[][] map;
   
   public World(){
-    map = new Obstacle[BTD.WORLD_WIDTH][BTD.WORLD_HEIGHT]; 
-    map[38][38]=new Player(38,38,100);
+    map = new Obstacle[BTD.WORLD_HEIGHT][BTD.WORLD_WIDTH]; 
+    map[BTD.WORLD_HEIGHT-2][BTD.WORLD_WIDTH-2]=new Player(BTD.WORLD_WIDTH-2,BTD.WORLD_HEIGHT-2,100);
     map[0][0]=new EnemyBase(0,0,100);
     for(int y = 0; y < map.length; y++){
       for(int x = 0; x < map[y].length;x++){
         if(map[y][x]==null)
-        if(random(2)<1){
-          if((y<38||x<38)&&(x>2||y>2))
+        if(random(4)<1){
+          if((y<BTD.WORLD_HEIGHT-2||x<BTD.WORLD_WIDTH-2)&&(x>2||y>2))
          map[y][x]=new DartTower(x,y,100);
         }
       }
     }
-    enemies.add(new Balloon(33,24,1));
+    enemies.add(new Balloon(10,10,1));
+    enemies.get(0).setSpeed(1);
   }
   
   public Obstacle[][] getMap(){
