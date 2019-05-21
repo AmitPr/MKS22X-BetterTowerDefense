@@ -5,6 +5,7 @@ abstract class Enemy{
   private float y;
   private float speed;
   private float r,g,b;
+  private float[][] pathfindList;
   
   public Enemy(float x, float y, float health){
     this.x=x;
@@ -23,6 +24,17 @@ abstract class Enemy{
   public void setHealth(float health){this.health=health;}
   public void damage(float damageAmount){
    this.health-=damageAmount; 
+  }
+  //A* pathfinding algorithm
+  public void pathfind(Obstacle[][] map){
+    float G = 1;
+    float curX = this.x;
+    float curY = this.y;
+    float H = abs(curY-map.length)+abs(curX-map[0].length);
+    boolean done = false;
+    while(!done){
+      
+    }
   }
   public void display(){
     ellipseMode(RADIUS);
