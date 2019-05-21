@@ -56,6 +56,6 @@ abstract class Enemy{
     ellipseMode(RADIUS);
     fill(r,g,b);
     move((int)random(4));
-    ellipse(width/BTD.WORLD_WIDTH*(x+0.5),height/BTD.WORLD_HEIGHT*(y+0.5),width/BTD.WORLD_WIDTH/2,height/BTD.WORLD_HEIGHT/2);
+    ellipse(width/WORLD_WIDTH*(x+0.5),height/WORLD_HEIGHT*(y+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
   }
 }

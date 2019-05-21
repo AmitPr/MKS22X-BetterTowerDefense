@@ -8,3 +8,6 @@ void setup(){
 void draw(){
   world.tick();
 }
+void mouseClicked(){
+  world.onMouseClick();
+}
