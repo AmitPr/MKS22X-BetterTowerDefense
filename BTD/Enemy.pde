@@ -9,7 +9,7 @@ abstract class Enemy{
   
   public Enemy(float x, float y, float health){
     this.x=x;
-    this.y=y;
+    this.y=y;git 
     this.health=health;
     r=g=b=random(255);
   }
