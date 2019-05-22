@@ -9,7 +9,7 @@ abstract class Obstacle{
     this.y=y;
     this.maxHealth=maxHealth;
   }
-  public void display(int[][] pathFindingMap){
+  public void display(){
   }
   public int getX(){return x;}
   public void setX(int x){this.x=x;}

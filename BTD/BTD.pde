@@ -1,6 +1,7 @@
 World world;
 public static final int WORLD_WIDTH=20;
 public static final int WORLD_HEIGHT=20;
+public static int[][] pathFindingMap;
 void setup(){
   fullScreen();
   world = new World();

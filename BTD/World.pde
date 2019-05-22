@@ -3,7 +3,6 @@ class World{
   public ArrayList<Tower> towers = new ArrayList<Tower>();
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public Obstacle[][] map;
-  public int[][] pathFindingMap;
   
   public World(){
     pathFindingMap = new int[BTD.WORLD_HEIGHT][BTD.WORLD_WIDTH];
@@ -131,15 +130,15 @@ class World{
     for(int y = 0; y < map.length; y++){
       for(int x = 0; x < map[y].length;x++){
          if(map[y][x]!=null){
-            map[y][x].display(pathFindingMap); 
+            map[y][x].display(); 
          }
       }
     }
     for(Enemy e : enemies){
-      e.display(pathFindingMap);
+      e.display();
     }
     for(Tower t : towers){
-      t.display(pathFindingMap);
+      t.display();
     }
   }
   

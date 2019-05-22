@@ -4,7 +4,7 @@ public class DartTower extends Tower{
      r=g=115;
      b=55;
    }
-   public void display(int[][] pathFindingMap){
-     super.display(pathFindingMap);
+   public void display(){
+     super.display();
    }
 }

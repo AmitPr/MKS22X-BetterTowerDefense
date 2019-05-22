@@ -60,7 +60,7 @@ abstract class Enemy{
     
     return false;
   }
-  public int getDirection(int[][] pathFindingMap){
+  public int getDirection(){
     if(!isMoving){
       int x_inted = round(x);
       println(x_inted);
@@ -104,10 +104,10 @@ abstract class Enemy{
     }
     return 0;
   }
-  public void display(int[][] pathFindingMap){
+  public void display(){
     ellipseMode(RADIUS);
     fill(r,g,b);
-    move(getDirection(pathFindingMap));
+    move(getDirection());
     ellipse(width/WORLD_WIDTH*(y+0.5),height/WORLD_HEIGHT*(x+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
   }
 }
