@@ -3,12 +3,11 @@ class World{
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public Obstacle[][] map;
   public World(){
-    map = new Obstacle[BTD.WORLD_HEIGHT][BTD.WORLD_WIDTH]; 
-    map[BTD.WORLD_HEIGHT-2][BTD.WORLD_WIDTH-2]=
-      map[BTD.WORLD_HEIGHT-1][BTD.WORLD_WIDTH-1]=
+    map = new Obstacle[WORLD_HEIGHT][WORLD_WIDTH]; 
+    map[WORLD_HEIGHT-2][BTD.WORLD_WIDTH-2]=
+      map[WORLD_HEIGHT-1][BTD.WORLD_WIDTH-1]=
       map[BTD.WORLD_HEIGHT-2][BTD.WORLD_WIDTH-1]=
-      map[BTD.WORLD_HEIGHT-1][BTD.WORLD_WIDTH-2]=
-      new Player(BTD.WORLD_WIDTH-2,BTD.WORLD_HEIGHT-2,100);
+      map[BTD.WORLD_HEIGHT-1][BTD.WORLD_WIDTH-2]= new Player(BTD.WORLD_WIDTH-2,BTD.WORLD_HEIGHT-2,100);
     map[0][0]=map[0][1]=map[1][0]=map[1][1]=new EnemyBase(0,0,100);
     for(int y = 0; y < map.length; y++){
       for(int x = 0; x < map[y].length;x++){
@@ -49,8 +48,11 @@ class World{
   public void onMouseClick(){
     int y = screenToWorldY(mouseY);
     int x = screenToWorldX(mouseX);
-    if(map[y][x]==null)
+    if(map[y][x]==null){
       map[y][x]=new DartTower(x,y,100);
+    }else{
+      map[y][x]=null;  
+    }
   }
   public  int screenToWorldX(int x){
     return (int)(x/(float)width*(float)BTD.WORLD_WIDTH);
