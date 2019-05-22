@@ -33,16 +33,16 @@ abstract class Enemy{
     }
     isMoving=true;
     switch(currentDirection){
-      case 0:
+      case 0: //north
         y-=1/(4*speed);
         break;
-      case 1:
+      case 1: //east
         x+=1/(4*speed);
         break;
-      case 2: 
+      case 2: //south
         y+=1/(4*speed);
         break;
-      case 3:
+      case 3: //west
         x-=1/(4*speed);
         break;
       default:
@@ -52,66 +52,36 @@ abstract class Enemy{
       isMoving=false;
     }
   }
-  public boolean isValidCoord(int x, int y){
-    
-    if(0 <= x && x < BTD.WORLD_WIDTH && 0 <= y && y < BTD.WORLD_HEIGHT){
-      return true;
-    }
-    
-    return false;
-  }
+  
   public int getDirection(){
-    if(!isMoving){
-      int x_inted = round(x);
-      println(x_inted);
-      int y_inted = round(y);
-      println(y_inted);
-      ArrayList<Integer> possibleDirecs = new ArrayList<Integer>();
-      int minLength = Integer.MAX_VALUE;
-      
-      if(isValidCoord(x_inted+1,y_inted)&& minLength>pathFindingMap[x_inted+1][y_inted] && pathFindingMap[x_inted+1][y_inted]>-1){
-        minLength = pathFindingMap[x_inted+1][y_inted];
-      }
-      if(isValidCoord(x_inted-1,y_inted)&& minLength>pathFindingMap[x_inted-1][y_inted] && pathFindingMap[x_inted-1][y_inted]>-1){
-        minLength = pathFindingMap[x_inted-1][y_inted];
-      }
-      if(isValidCoord(x_inted,y_inted+1)&& minLength>pathFindingMap[x_inted][y_inted+1] && pathFindingMap[x_inted][y_inted+1]>-1){
-        minLength = pathFindingMap[x_inted][y_inted+1];
-      }
-      if(isValidCoord(x_inted,y_inted-1)&& minLength>pathFindingMap[x_inted][y_inted-1] && pathFindingMap[x_inted][y_inted-1]>-1){
-        minLength = pathFindingMap[x_inted][y_inted-1];
-      }
-      println(minLength);
-      
-      if(isValidCoord(x_inted,y_inted-1) && pathFindingMap[x_inted][y_inted-1]>-1 && minLength == pathFindingMap[x_inted][y_inted-1]){
-        println("case 0");
-        possibleDirecs.add(0);
-      }
-      if(isValidCoord(x_inted+1,y_inted) && pathFindingMap[x_inted+1][y_inted]>-1 && minLength == pathFindingMap[x_inted+1][y_inted]){
-        println("case 1");
-        possibleDirecs.add(1);
-      }
-      if(isValidCoord(x_inted,y_inted+1) && pathFindingMap[x_inted][y_inted+1]>-1 && minLength == pathFindingMap[x_inted][y_inted+1]){
-        println("case 2");
-        possibleDirecs.add(2);
-      }
-      if(isValidCoord(x_inted-1,y_inted) && pathFindingMap[x_inted-1][y_inted]>-1 && minLength == pathFindingMap[x_inted-1][y_inted]){
-        println("case 3");
-        possibleDirecs.add(3);
-      }
-      println(possibleDirecs);
-      if(possibleDirecs.size()==0){
-         world.enemies.remove(this);
-         return -1;
-      }
-      return possibleDirecs.get((int)(random(possibleDirecs.size())));
+    int x_inted = round(x);
+    int y_inted = round(y);
+    ArrayList<Integer> possibleDirecs = new ArrayList<Integer>();
+    int[] allowedMoves = new int[]{Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE};
+    if(isValidCoord(x_inted+1,y_inted)){
+      allowedMoves[1]=pathFindingMap[y_inted][x_inted+1];
     }
-    return 0;
+    if(isValidCoord(x_inted-1,y_inted)){
+      allowedMoves[3]=pathFindingMap[y_inted][x_inted-1];
+    }
+    if(isValidCoord(x_inted,y_inted+1)){
+      allowedMoves[2]=pathFindingMap[y_inted+1][x_inted];
+    }
+    if(isValidCoord(x_inted,y_inted-1)){
+      allowedMoves[0]=pathFindingMap[y_inted-1][x_inted];
+    }
+    int min = min(allowedMoves);
+    for(int i = 0; i < 4;i++){
+      if(allowedMoves[i]==min){
+        possibleDirecs.add(i);
+      }
+    }
+    return possibleDirecs.get((int)(random(possibleDirecs.size())));
   }
   public void display(){
     ellipseMode(RADIUS);
     fill(r,g,b);
     move(getDirection());
-    ellipse(width/WORLD_WIDTH*(y+0.5),height/WORLD_HEIGHT*(x+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
+    ellipse(width/WORLD_WIDTH*(x+0.5),height/WORLD_HEIGHT*(y+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
   }
 }

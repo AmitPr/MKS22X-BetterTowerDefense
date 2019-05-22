@@ -31,8 +31,6 @@ class World{
     enemies.get(0).setSpeed(4);
   }
   
-  public boolean isValidCoord(int x, int y) {return ((0 <= x) && (x < BTD.WORLD_WIDTH) && (0 <= y) && (y < BTD.WORLD_HEIGHT)); }
-  
   public boolean updatePathFindingMap(){
     int[][] newPathFindingMap = new int[BTD.WORLD_WIDTH][BTD.WORLD_HEIGHT];
     for(int i = 0; i < BTD.WORLD_WIDTH; i++){
@@ -40,7 +38,6 @@ class World{
         newPathFindingMap[i][j]=-1;
       }
     }
-    println("starting process");
     pathFindingMap[BTD.WORLD_WIDTH-2][BTD.WORLD_HEIGHT-2]=0;
     pathFindingMap[BTD.WORLD_WIDTH-1][BTD.WORLD_HEIGHT-1]=0;
     pathFindingMap[BTD.WORLD_WIDTH-2][BTD.WORLD_HEIGHT-1]=0;
@@ -52,34 +49,25 @@ class World{
     lastVisitedCoords.add(playerCoords[2]);
     lastVisitedCoords.add(playerCoords[3]);
     
-    for(int i = 0; i < lastVisitedCoords.size(); i++){
-        println(Integer.toString(lastVisitedCoords.get(i)[0])+", "+Integer.toString(lastVisitedCoords.get(i)[1]));
-      }
     while(lastVisitedCoords.size()>0){
       ArrayList<int[]> justVisitedCoords = new ArrayList<int[]>();
       for(int[] coords : lastVisitedCoords){
-        println("coords[0]:" + coords[0]);
-        println("coords[1]:" + coords[1]);
-        if(isValidCoord((coords[0]+1),coords[1]) && newPathFindingMap[coords[0]+1][coords[1]] == -1 && (((map[coords[0]+1][coords[1]]==null))||(coords[0]+1<2 && coords[1]<2))){
-          println("valid coords:" + (coords[0]+1) + ", " + (coords[1]));
+        if(isValidCoord(coords[1],coords[0]+1) && newPathFindingMap[coords[0]+1][coords[1]] == -1 && (((map[coords[0]+1][coords[1]]==null))||(coords[0]+1<2 && coords[1]<2))){
           newPathFindingMap[coords[0]+1][coords[1]] = newPathFindingMap[coords[0]][coords[1]]+1;
           int[] thisCoord = {coords[0]+1,coords[1]};
           justVisitedCoords.add(thisCoord);
         }
-        if(isValidCoord((coords[0]-1),coords[1]) && newPathFindingMap[coords[0]-1][coords[1]] == -1 && (((map[coords[0]-1][coords[1]]==null))||(coords[0]-1<2 && coords[1]<2))){
-          println("valid coords:" + (coords[0]-1) + ", " + (coords[1]));
+        if(isValidCoord(coords[1],coords[0]-1) && newPathFindingMap[coords[0]-1][coords[1]] == -1 && (((map[coords[0]-1][coords[1]]==null))||(coords[0]-1<2 && coords[1]<2))){
           newPathFindingMap[coords[0]-1][coords[1]] = newPathFindingMap[coords[0]][coords[1]]+1;
           int[] thisCoord = {coords[0]-1,coords[1]};
           justVisitedCoords.add(thisCoord);
         }
-        if(isValidCoord(coords[0],(coords[1]+1)) && newPathFindingMap[coords[0]][coords[1]+1] == -1 && (((map[coords[0]][coords[1]+1]==null))||(coords[0]<2 && coords[1]+1<2))){
-          println("valid coords:" + (coords[0]) + ", " + (coords[1]+1));
+        if(isValidCoord(coords[1]+1,coords[0]) && newPathFindingMap[coords[0]][coords[1]+1] == -1 && (((map[coords[0]][coords[1]+1]==null))||(coords[0]<2 && coords[1]+1<2))){
           newPathFindingMap[coords[0]][coords[1]+1] = newPathFindingMap[coords[0]][coords[1]]+1;
           int[] thisCoord = {coords[0],coords[1]+1};
           justVisitedCoords.add(thisCoord);
         }
-        if(isValidCoord(coords[0],(coords[1]-1)) && newPathFindingMap[coords[0]][coords[1]-1] == -1 && (((map[coords[0]][coords[1]-1]==null))||(coords[0]<2 && coords[1]-1<2))){
-          println("valid coords:" + (coords[0]) + ", " + (coords[1]-1));
+        if(isValidCoord(coords[1]-1,coords[0]) && newPathFindingMap[coords[0]][coords[1]-1] == -1 && (((map[coords[0]][coords[1]-1]==null))||(coords[0]<2 && coords[1]-1<2))){
           newPathFindingMap[coords[0]][coords[1]-1] = newPathFindingMap[coords[0]][coords[1]]+1;
           int[] thisCoord = {coords[0],coords[1]-1};
           justVisitedCoords.add(thisCoord);
@@ -89,7 +77,6 @@ class World{
       lastVisitedCoords = justVisitedCoords;
     }
     if(newPathFindingMap[0][1] == -1 && newPathFindingMap[1][0] == -1 && newPathFindingMap[1][1] == -1){
-      println("returning false");
       return false;
     }
     else{
@@ -103,10 +90,7 @@ class World{
         newPathFindingMap[0][1] = newPathFindingMap[1][0] = newPathFindingMap[1][1];
       }
       newPathFindingMap[0][0]=newPathFindingMap[0][1]+1;
-      for(int i = 0; i < BTD.WORLD_HEIGHT; i ++){
-        println(newPathFindingMap[i]);
-      }
-      pathFindingMap = newPathFindingMap;
+      pathFindingMap = newPathFindingMap;;
       return true;
     }
   }
@@ -152,6 +136,7 @@ class World{
       }
     }else{
      map[y][x]=null; 
+     updatePathFindingMap();
     }
   }
   

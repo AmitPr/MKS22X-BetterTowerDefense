@@ -12,3 +12,9 @@ void draw(){
 void mouseClicked(){
   world.onMouseClick();
 }
+public boolean isValidCoord(int x, int y){
+  if(0 <= x && x < BTD.WORLD_WIDTH && 0 <= y && y < BTD.WORLD_HEIGHT && pathFindingMap[y][x]!=-1){
+    return true;
+  }
+  return false;
+}
