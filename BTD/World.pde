@@ -29,7 +29,7 @@ class World{
     }
     updatePathFindingMap();
     enemies.add(new Balloon(0,0,1));
-    enemies.get(0).setSpeed(1);
+    enemies.get(0).setSpeed(4);
   }
   
   public boolean isValidCoord(int x, int y) {return ((0 <= x) && (x < BTD.WORLD_WIDTH) && (0 <= y) && (y < BTD.WORLD_HEIGHT)); }
@@ -146,8 +146,14 @@ class World{
   public void onMouseClick(){
     int y = screenToWorldY(mouseY);
     int x = screenToWorldX(mouseX);
-    if(map[y][x]==null)
+    if(map[y][x]==null){
       map[y][x]=new DartTower(x,y,100);
+      if(!updatePathFindingMap()){
+        map[y][x]=null;
+      }
+    }else{
+     map[y][x]=null; 
+    }
   }
   
   public  int screenToWorldX(int x){

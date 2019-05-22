@@ -108,6 +108,6 @@ abstract class Enemy{
     ellipseMode(RADIUS);
     fill(r,g,b);
     move(getDirection(pathFindingMap));
-    ellipse(width/WORLD_WIDTH*(x+0.5),height/WORLD_HEIGHT*(y+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
+    ellipse(width/WORLD_WIDTH*(y+0.5),height/WORLD_HEIGHT*(x+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
   }
 }
