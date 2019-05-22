@@ -100,6 +100,10 @@ abstract class Enemy{
         possibleDirecs.add(3);
       }
       println(possibleDirecs);
+      if(possibleDirecs.size()==0){
+         world.enemies.remove(this);
+         return -1;
+      }
       return possibleDirecs.get((int)(random(possibleDirecs.size())));
     }
     return 0;
