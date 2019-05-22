@@ -52,54 +52,56 @@ abstract class Enemy{
       isMoving=false;
     }
   }
-  public boolean isValidCoord(int x, int y){
-    
-    if(0 <= x && x < BTD.WORLD_WIDTH && 0 <= y && y < BTD.WORLD_HEIGHT){
-      return true;
-    }
-    
-    return false;
-  }
   public int getDirection(){
     if(!isMoving){
       int x_inted = round(x);
-      println(x_inted);
       int y_inted = round(y);
-      println(y_inted);
+      Integer[][] allCoords = {{x_inted,y_inted-1},{x_inted+1,y_inted},{x_inted,y_inted+1},{x_inted-1,y_inted}}; 
+      int min = Integer.MAX_VALUE;
+      int curChoice = 0;
+      for(int i = 0; i < allCoords.length;i++){
+        if(isValidCoord(allCoords[i][0],allCoords[i][1])){
+          int val = pathFindingMap[allCoords[i][1]][allCoords[i][0]];
+          if(val < min){
+             min = val; 
+             curChoice=i;
+          }
+        }
+      }
+      
       ArrayList<Integer> possibleDirecs = new ArrayList<Integer>();
-      int minLength = Integer.MAX_VALUE;
-      
-      if(isValidCoord(x_inted+1,y_inted)&& minLength>pathFindingMap[x_inted+1][y_inted] && pathFindingMap[x_inted+1][y_inted]>-1){
-        minLength = pathFindingMap[x_inted+1][y_inted];
+      /*int minLength = Integer.MAX_VALUE;
+      if(isValidCoord(x_inted+1,y_inted)&& minLength>pathFindingMap[y_inted][x_inted+1]){
+        minLength = pathFindingMap[y_inted][x_inted+1];
+        curChoice = 1;
       }
-      if(isValidCoord(x_inted-1,y_inted)&& minLength>pathFindingMap[x_inted-1][y_inted] && pathFindingMap[x_inted-1][y_inted]>-1){
-        minLength = pathFindingMap[x_inted-1][y_inted];
+      if(isValidCoord(x_inted-1,y_inted)&& minLength>pathFindingMap[y_inted][x_inted-1]){
+        minLength = pathFindingMap[y_inted][x_inted-1];
+        curChoice = 3;
       }
-      if(isValidCoord(x_inted,y_inted+1)&& minLength>pathFindingMap[x_inted][y_inted+1] && pathFindingMap[x_inted][y_inted+1]>-1){
-        minLength = pathFindingMap[x_inted][y_inted+1];
+      if(isValidCoord(x_inted,y_inted+1)&& minLength>pathFindingMap[y_inted+1][x_inted]){
+        minLength = pathFindingMap[y_inted+1][x_inted];
+        curChoice = 2;
       }
-      if(isValidCoord(x_inted,y_inted-1)&& minLength>pathFindingMap[x_inted][y_inted-1] && pathFindingMap[x_inted][y_inted-1]>-1){
-        minLength = pathFindingMap[x_inted][y_inted-1];
-      }
-      println(minLength);
-      
-      if(isValidCoord(x_inted,y_inted-1) && pathFindingMap[x_inted][y_inted-1]>-1 && minLength == pathFindingMap[x_inted][y_inted-1]){
-        println("case 0");
+      if(isValidCoord(x_inted,y_inted-1)&& minLength>pathFindingMap[y_inted-1][x_inted]){
+        minLength = pathFindingMap[y_inted-1][x_inted];
+        curChoice = 0;
+      }*/
+      possibleDirecs.add(curChoice);
+      /*
+      if(isValidCoord(x_inted,y_inted-1) && pathFindingMap[y_inted-1][x_inted]>-1 && minLength == pathFindingMap[y_inted-1][x_inted]){
         possibleDirecs.add(0);
       }
-      if(isValidCoord(x_inted+1,y_inted) && pathFindingMap[x_inted+1][y_inted]>-1 && minLength == pathFindingMap[x_inted+1][y_inted]){
-        println("case 1");
+      if(isValidCoord(x_inted+1,y_inted) && pathFindingMap[y_inted][x_inted+1]>-1 && minLength == pathFindingMap[y_inted][x_inted+1]){
         possibleDirecs.add(1);
       }
-      if(isValidCoord(x_inted,y_inted+1) && pathFindingMap[x_inted][y_inted+1]>-1 && minLength == pathFindingMap[x_inted][y_inted+1]){
-        println("case 2");
+      if(isValidCoord(x_inted,y_inted+1) && pathFindingMap[y_inted+1][x_inted]>-1 && minLength == pathFindingMap[y_inted+1][x_inted]){
         possibleDirecs.add(2);
       }
-      if(isValidCoord(x_inted-1,y_inted) && pathFindingMap[x_inted-1][y_inted]>-1 && minLength == pathFindingMap[x_inted-1][y_inted]){
-        println("case 3");
+      if(isValidCoord(x_inted-1,y_inted) && pathFindingMap[y_inted][x_inted-1]>-1 && minLength == pathFindingMap[y_inted][x_inted-1]){
         possibleDirecs.add(3);
-      }
-      println(possibleDirecs);
+      }*/
+      //println(minLength + " min lenght");
       if(possibleDirecs.size()==0){
          world.enemies.remove(this);
          return -1;
@@ -112,6 +114,6 @@ abstract class Enemy{
     ellipseMode(RADIUS);
     fill(r,g,b);
     move(getDirection());
-    ellipse(width/WORLD_WIDTH*(y+0.5),height/WORLD_HEIGHT*(x+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
+    ellipse(width/WORLD_WIDTH*(x+0.5),height/WORLD_HEIGHT*(y+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
   }
 }

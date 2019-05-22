@@ -12,3 +12,13 @@ void draw(){
 void mouseClicked(){
   world.onMouseClick();
 }
+
+public boolean isValidCoord(int x, int y){
+  
+  if(0 <= x && x < WORLD_WIDTH && 0 <= y && y < WORLD_HEIGHT){
+    if(!(pathFindingMap[y][x]==-1))
+      return true;
+  }
+  
+  return false;
+}
