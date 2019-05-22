@@ -11,4 +11,4 @@ Amit & Mario: Added display and scaling methods, created some test towers and en
 #### 5/21/19
 Amit: Added Some basic structure for towers and enemies, added screenToWorld grid scaling functions, mouse click to add towers to the map.  
 Amit & Mario: Added smooth enemy movement between tiles  
-Mario:
+Mario: Started pathfinding but ran into bugs
