@@ -28,6 +28,9 @@ abstract class Enemy{
   public void damage(float damageAmount){
    this.health-=damageAmount; 
   }
+  public boolean isDead(){
+    return getHealth()<=0;
+  }
   public void move(int direction){
     //0 is up, 1 is right, 2 is down, 3 is left
     if(!isMoving){
@@ -63,9 +66,40 @@ abstract class Enemy{
     int x_inted = round(x);
     int y_inted = round(y);
     if(x_inted==y_inted && x_inted==0){
-      return int(random(2)+1);
+      if(pathFindingMap[0][1]==pathFindingMap[1][0]){
+        return (int) random(2)+1;
+      }
+      else{
+        if(pathFindingMap[0][1]<pathFindingMap[1][0]){
+          return 1;
+        }
+        return 2;
+      }
     }
     ArrayList<Integer> possibleDirecs = new ArrayList<Integer>();
+    if(x_inted+y_inted ==1){
+      int[] allowedMoves = new int[]{Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE};
+      if(isValidCoord(x_inted+1,y_inted)&&pathFindingMap[y_inted][x_inted+1]!=-1){
+        allowedMoves[1]=pathFindingMap[y_inted][x_inted+1];
+      }
+      if(isValidCoord(x_inted-1,y_inted)&&pathFindingMap[y_inted][x_inted-1]!=-1){
+        allowedMoves[3]=pathFindingMap[y_inted][x_inted-1];
+      }
+      if(isValidCoord(x_inted,y_inted+1)&&pathFindingMap[y_inted+1][x_inted+1]!=-1){
+        allowedMoves[2]=pathFindingMap[y_inted+1][x_inted];
+      }
+      if(isValidCoord(x_inted,y_inted-1)&&pathFindingMap[y_inted-1][x_inted+1]!=-1){
+        allowedMoves[0]=pathFindingMap[y_inted-1][x_inted];
+      }
+      int min = min(allowedMoves);
+      for(int i = 0; i < 4;i++){
+        if(allowedMoves[i]==min){
+          possibleDirecs.add(i);
+        }
+      }
+      return possibleDirecs.get((int)(random(possibleDirecs.size())));
+    }
+    
     int[] allowedMoves = new int[]{Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE};
     if(isValidCoord(x_inted+1,y_inted) && (world.map[y_inted][x_inted+1]==null || (x+1 >= WORLD_WIDTH-2) && (y >= WORLD_HEIGHT-2))){
       allowedMoves[1]=pathFindingMap[y_inted][x_inted+1];
