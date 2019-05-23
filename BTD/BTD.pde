@@ -1,3 +1,4 @@
+
 World world;
 Player player;
 public static final int WORLD_WIDTH=20;

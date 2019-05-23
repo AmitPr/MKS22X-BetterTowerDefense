@@ -22,7 +22,7 @@ class World{
     for(int y = 0; y < map.length; y++){
       for(int x = 0; x < map[y].length;x++){
         if(map[y][x]==null)
-        if(random(10000)<1){
+        if(random(4)<1){
          map[y][x]=new DartTower(x,y,100);
          
         }
@@ -102,15 +102,7 @@ class World{
       return false;
     }
     else{
-      if(newPathFindingMap[0][1]>0){
-        newPathFindingMap[1][0] = newPathFindingMap[1][1] = newPathFindingMap[0][1];
-      }
-      else if(newPathFindingMap[1][0]>0){
-        newPathFindingMap[0][1] = newPathFindingMap[1][1] = newPathFindingMap[1][0];
-      }
-      else if(newPathFindingMap[1][1]>0){
-        newPathFindingMap[0][1] = newPathFindingMap[1][0] = newPathFindingMap[1][1];
-      }
+      
       newPathFindingMap[0][0]=min(newPathFindingMap[0][1],newPathFindingMap[0][1])+1;
       pathFindingMap = newPathFindingMap;
       return true;
@@ -144,16 +136,7 @@ class World{
       enemies.add(new Balloon(0,0,1,1));
       enemies.get(enemies.size()-1).setSpeed(4);
     }
-    int towerCounter = 0;
-    for(int y = 0; y < map.length; y++ ){
-      for(int x = 0; x < map[0].length;x++){
-        if(map[y][x]!=null){
-          towerCounter+=1;
-          map[y][x].display();
-
-        }
-      }
-    }
+    
     //println("Tower count: "+Integer.toString(towerCounter)); 
     for(int i = 0; i < enemies.size(); i++){
       Enemy e=enemies.get(i);
