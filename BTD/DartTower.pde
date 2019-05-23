@@ -8,4 +8,7 @@ public class DartTower extends Tower{
    public void display(){
      super.display();
    }
+   public void fire(Enemy e){
+     
+   }
 }

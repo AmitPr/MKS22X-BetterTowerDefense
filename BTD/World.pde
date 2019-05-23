@@ -22,7 +22,7 @@ class World{
     for(int y = 0; y < map.length; y++){
       for(int x = 0; x < map[y].length;x++){
         if(map[y][x]==null)
-        if(random(4)<1){
+        if(random(0)>1){
          map[y][x]=new DartTower(x,y,100);
          
         }
@@ -48,9 +48,9 @@ class World{
     lastVisitedCoords.add(playerCoords[1]);
     lastVisitedCoords.add(playerCoords[2]);
     lastVisitedCoords.add(playerCoords[3]);
-    newPathFindingMap[BTD.WORLD_WIDTH-2][BTD.WORLD_HEIGHT-2]=0;
-    newPathFindingMap[BTD.WORLD_WIDTH-1][BTD.WORLD_HEIGHT-1]=0;
-    newPathFindingMap[BTD.WORLD_WIDTH-2][BTD.WORLD_HEIGHT-1]=0;
+    newPathFindingMap[BTD.WORLD_WIDTH-2][BTD.WORLD_HEIGHT-2]=
+    newPathFindingMap[BTD.WORLD_WIDTH-1][BTD.WORLD_HEIGHT-1]=
+    newPathFindingMap[BTD.WORLD_WIDTH-2][BTD.WORLD_HEIGHT-1]=
     newPathFindingMap[BTD.WORLD_WIDTH-1][BTD.WORLD_HEIGHT-2]=0;
     
     //println(pathFindingMap[BTD.WORLD_WIDTH-1][BTD.WORLD_HEIGHT-1]);
@@ -122,9 +122,16 @@ class World{
    int my = round(y);
    return map[my][mx];
   }
-  
   public void tick(){
     background(46,125,50);
+    
+    for(int i = 0; i < enemies.size(); i++){
+      Enemy e=enemies.get(i);
+      e.display();
+      if(e!=enemies.get(i)){
+        i--;
+      }
+    }
     for(int y = 0; y < map.length; y++){
       for(int x = 0; x < map[y].length;x++){
          if(map[y][x]!=null){
@@ -135,15 +142,6 @@ class World{
     if(random(60)<1){
       enemies.add(new Balloon(0,0,1,1));
       enemies.get(enemies.size()-1).setSpeed(4);
-    }
-    
-    //println("Tower count: "+Integer.toString(towerCounter)); 
-    for(int i = 0; i < enemies.size(); i++){
-      Enemy e=enemies.get(i);
-      e.display();
-      if(e!=enemies.get(i)){
-        i--;
-      }
     }
     for(int y = 0; y < WORLD_HEIGHT; y++){
       for(int x = 0; x < WORLD_HEIGHT; x++){

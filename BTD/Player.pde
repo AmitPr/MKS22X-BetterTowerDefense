@@ -2,7 +2,7 @@ public class Player extends Tower{
   public int money;
   public Player(int x, int y, int maxHealth){
       super(x,y,maxHealth);
-      money=10000;
+      money=1000000;
       health=1000;
   }
   public void display(){
