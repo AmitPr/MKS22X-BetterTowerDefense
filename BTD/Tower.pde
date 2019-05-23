@@ -4,7 +4,7 @@ abstract class Tower extends Obstacle {
   float RoF;
   float timeTillNextFire;
   float r,g,b;
-  public Tower(int x, int y, float maxHealth){
+  public Tower(int x, int y, int maxHealth){
      super(x,y,maxHealth); 
      r = random(255);
      g = random(255);
@@ -13,5 +13,7 @@ abstract class Tower extends Obstacle {
   public void display(){
     fill(r,g,b);
     rect(width/BTD.WORLD_WIDTH * x,height/BTD.WORLD_HEIGHT*y,width/BTD.WORLD_WIDTH,height/BTD.WORLD_HEIGHT);
+    //fill(255,255,255);
+    
   }
 }

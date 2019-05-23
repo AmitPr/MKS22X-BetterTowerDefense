@@ -1,6 +1,6 @@
 abstract class Enemy{
   
-  private float health;
+  private int health;
   private float x;
   private float y;
   private float speed;
@@ -8,7 +8,7 @@ abstract class Enemy{
   private int currentDirection;
   private boolean isMoving = false;
   
-  public Enemy(float x, float y, float health){
+  public Enemy(float x, float y, int health){
     this.x=x;
     this.y=y;
     this.health=health;
@@ -22,7 +22,7 @@ abstract class Enemy{
   public float getSpeed(){return speed;}
   public void setSpeed(float speed){this.speed=speed;}
   public float getHealth(){return health;}
-  public void setHealth(float health){this.health=health;}
+  public void setHealth(int health){this.health=health;}
   public void damage(float damageAmount){
    this.health-=damageAmount; 
   }
@@ -50,6 +50,10 @@ abstract class Enemy{
     } 
     if(abs(round(x)-x) < 0.0001 && abs(round(y)-y)<0.0001){
       isMoving=false;
+    }
+    if((round(x)==WORLD_WIDTH-1 || round(x)==WORLD_WIDTH-2)&&(round(y)==WORLD_HEIGHT-1 || round(y)==WORLD_HEIGHT-2)){
+      player.health-=health;
+      world.enemies.remove(this);
     }
   }
   

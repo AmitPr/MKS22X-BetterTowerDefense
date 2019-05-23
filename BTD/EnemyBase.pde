@@ -1,5 +1,5 @@
 public class EnemyBase extends Tower{
-  public EnemyBase(int x, int y, float maxHealth){
+  public EnemyBase(int x, int y, int maxHealth){
       super(x,y,maxHealth); 
   }
   public void display(){

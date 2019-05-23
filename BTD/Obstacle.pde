@@ -1,13 +1,15 @@
 abstract class Obstacle{
-  float health;
-  float maxHealth;
+  int health;
+  int maxHealth;
   int x;
   int y;
-  
-  public Obstacle(int x, int y, float maxHealth){
+  int price;
+  public Obstacle(int x, int y, int maxHealth){
     this.x=x;
     this.y=y;
     this.maxHealth=maxHealth;
+    this.price=0;
+    this.health=this.maxHealth;
   }
   public void display(){
   }
@@ -16,9 +18,9 @@ abstract class Obstacle{
   public int getY(){return y;}
   public void setY(int y){this.y=y;}
   public float getHealth(){return health;}
-  public void setHealth(float health){this.health=health;}
+  public void setHealth(int health){this.health=health;}
   public float getMaxHealth(){return maxHealth;}
-  public void setMaxHealth(float maxHealth){this.maxHealth=maxHealth;}
+  public void setMaxHealth(int maxHealth){this.maxHealth=maxHealth;}
   public void damage(float damageAmount){
    this.health-=damageAmount; 
   }
