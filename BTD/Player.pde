@@ -1,5 +1,5 @@
 public class Player extends Tower{
-  int money;
+  public int money;
   public Player(int x, int y, int maxHealth){
       super(x,y,maxHealth);
       money=10000;

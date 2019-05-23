@@ -5,6 +5,7 @@ public static final int WORLD_WIDTH=20;
 public static final int WORLD_HEIGHT=20;
 public static final float SELL_RATIO=0.8;
 public static int[][] pathFindingMap;
+public static final int[] towerPrices = new int[]{200};
 void setup(){
   fullScreen();
   world = new World();

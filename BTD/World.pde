@@ -170,16 +170,8 @@ class World{
         updatePathFindingMap();
       }
     }else{
-      println("deleting tower at " + y + "," + x);
      player.money+=SELL_RATIO*map[y][x].price;
-     //println(towers.size());
-     //towers.remove(map[y][x]);
-     //println(towers.size());
-     println("old location:" + map[y][x]);
      map[y][x]=null;
-     println("new location:" + map[y][x]);
-     //println(map[y][x]==null);
-     //println(map[y+1][x]==null);
      updatePathFindingMap();
     }
   }
