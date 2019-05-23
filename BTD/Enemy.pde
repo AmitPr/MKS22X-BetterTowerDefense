@@ -23,6 +23,8 @@ abstract class Enemy{
   public void setSpeed(float speed){this.speed=speed;}
   public float getHealth(){return health;}
   public void setHealth(int health){this.health=health;}
+  public void setRGB(int r, int g, int b){this.r = r; this.g=g;this.b=b;}
+  public void setRGB(int[] rgb){this.r = rgb[0]; this.g=rgb[1];this.b=rgb[2];}
   public void damage(float damageAmount){
    this.health-=damageAmount; 
   }

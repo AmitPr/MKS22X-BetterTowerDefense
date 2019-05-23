@@ -29,8 +29,8 @@ class World{
       }
     }
     updatePathFindingMap();
-    enemies.add(new Balloon(0,0,1,1));
-    enemies.get(0).setSpeed(4);
+    enemies.add(new Balloon(0,0,(int) random(4)));
+    
   }
   
   public boolean updatePathFindingMap(){
@@ -133,15 +133,15 @@ class World{
       }
     }
     if(random(60)<1){
-      enemies.add(new Balloon(0,0,1,1));
-      enemies.get(enemies.size()-1).setSpeed(4);
+      enemies.add(new Balloon(0,0,(int) random(4)));
+      //enemies.get(enemies.size()-1).setSpeed(4);
     }
     
     //println("Tower count: "+Integer.toString(towerCounter)); 
     for(int i = 0; i < enemies.size(); i++){
       Enemy e=enemies.get(i);
       e.display();
-      if(e!=enemies.get(i)){
+      if(i<enemies.size() && e!=enemies.get(i)){
         i--;
       }
     }
