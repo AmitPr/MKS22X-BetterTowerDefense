@@ -25,7 +25,6 @@ class World{
         if(map[y][x]==null)
         if(random(0)>1){
          map[y][x]=new DartTower(x,y,100);
-         
         }
       }
     }
@@ -173,8 +172,11 @@ class World{
     int y = screenToWorldY(mouseY);
     int x = screenToWorldX(mouseX);
     if(map[y][x]==null){
-      
-      map[y][x]=new DartTower(x,y,100);
+      if(key=='d'){
+        map[y][x]=new DartTower(x,y,100);
+      }else if (key=='w'){
+        map[y][x]=new WallTower(x,y,100); 
+      }
       if(map[y][x].price>player.money){
         map[y][x]=null;
       }
