@@ -125,6 +125,13 @@ class World{
   public void tick(){
     background(46,125,50);
     
+    for(int y = 0; y < map.length; y++){
+      for(int x = 0; x < map[y].length;x++){
+         if(map[y][x]!=null){
+            map[y][x].display(); 
+         }
+      }
+    }
     for(int i = 0; i < bullets.size(); i++){
       Bullet b = bullets.get(i);
       b.display();
@@ -137,13 +144,6 @@ class World{
       e.display();
       if(i >= enemies.size() || e!=enemies.get(i)){
         i--;
-      }
-    }
-    for(int y = 0; y < map.length; y++){
-      for(int x = 0; x < map[y].length;x++){
-         if(map[y][x]!=null){
-            map[y][x].display(); 
-         }
       }
     }
     if(random(10)<1){
@@ -178,16 +178,16 @@ class World{
         map[y][x]=new WallTower(x,y,100); 
       }
       if(map[y][x]!=null){
-        if(map[y][x].price>player.money){
-          map[y][x]=null;
-        }
-        else if(!updatePathFindingMap()){
-          map[y][x]=null;
-        }
-        else{
-          player.money-=map[y][x].price;
-          updatePathFindingMap();
-        }
+      if(map[y][x].price>player.money){
+        map[y][x]=null;
+      }
+      else if(!updatePathFindingMap()){
+        map[y][x]=null;
+      }
+      else{
+        player.money-=map[y][x].price;
+        updatePathFindingMap();
+      }
       }
     }else{
      player.money+=SELL_RATIO*map[y][x].price;

@@ -7,6 +7,7 @@ abstract class Enemy{
   private float r,g,b;
   private int currentDirection;
   private boolean isMoving = false;
+  private ArrayList<Effect> effects = new ArrayList<Effect>();
   
   public Enemy(float x, float y, int health){
     this.x=x;
@@ -25,6 +26,16 @@ abstract class Enemy{
   public void setHealth(int health){this.health=health;}
   public void setRGB(int r, int g, int b){this.r = r; this.g=g;this.b=b;}
   public void setRGB(int[] rgb){this.r = rgb[0]; this.g=rgb[1];this.b=rgb[2];}
+  public void addEffect(Effect e){
+   this.effects.add(e); 
+  }
+  public boolean hasEffect(String name){
+    for(Effect e : effects){
+      if(name==e.getName())
+        return true;
+    }
+    return false;
+  }
   public void damage(int damageAmount){
    this.health-=damageAmount; 
    if(health<0){
