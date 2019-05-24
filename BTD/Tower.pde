@@ -2,6 +2,7 @@ abstract class Tower extends Obstacle {
   float range;
   float RoF;
   float timeTillNextFire;
+  float reloadTime;
   float r,g,b;
   public Tower(int x, int y, int maxHealth){
      super(x,y,maxHealth); 
@@ -12,7 +13,6 @@ abstract class Tower extends Obstacle {
   public void display(){
     fill(r,g,b);
     timeTillNextFire-=1/frameRate;
-      println(timeTillNextFire);
     if(timeTillNextFire<=0){
       float minSquareDist = Float.MAX_VALUE;
       Enemy closest=null;
@@ -25,7 +25,7 @@ abstract class Tower extends Obstacle {
       }
       if(minSquareDist <= 100)
         fire(closest); 
-       timeTillNextFire=0.5;
+       timeTillNextFire=reloadTime;
     }
     rect(width/BTD.WORLD_WIDTH * x,height/BTD.WORLD_HEIGHT*y,width/BTD.WORLD_WIDTH,height/BTD.WORLD_HEIGHT);
   }

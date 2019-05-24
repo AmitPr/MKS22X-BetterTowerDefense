@@ -7,6 +7,7 @@ public class Balloon extends Enemy{
   }
   public void damage(int amt){
     super.damage(amt);
+    player.money+=amt;
     if(getHealth()<0){
       return;
     }
