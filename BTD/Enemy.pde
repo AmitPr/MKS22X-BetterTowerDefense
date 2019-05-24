@@ -21,10 +21,15 @@ abstract class Enemy{
   public void setY(float y){this.y=y;}
   public float getSpeed(){return speed;}
   public void setSpeed(float speed){this.speed=speed;}
-  public float getHealth(){return health;}
+  public int getHealth(){return health;}
   public void setHealth(int health){this.health=health;}
-  public void damage(float damageAmount){
+  public void setRGB(int r, int g, int b){this.r = r; this.g=g;this.b=b;}
+  public void setRGB(int[] rgb){this.r = rgb[0]; this.g=rgb[1];this.b=rgb[2];}
+  public void damage(int damageAmount){
    this.health-=damageAmount; 
+   if(health<0){
+     world.enemies.remove(this);
+   }
   }
   public void move(int direction){
     //0 is up, 1 is right, 2 is down, 3 is left

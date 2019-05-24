@@ -1,6 +1,17 @@
 public class Balloon extends Enemy{
-  public Balloon(float x, float y, int health, float speed){
-    super(x,y,health);
-    setSpeed(speed);
+  public Balloon(int x, int y, int bal){
+    super( x,  y,  0);
+    setHealth(balloonHealths[bal]);
+    setSpeed(balloonSpeeds[bal]);
+    setRGB(balloonCols[bal]);
   }
+  public void damage(int amt){
+    super.damage(amt);
+    if(getHealth()<0){
+      return;
+    }
+    setSpeed(balloonSpeeds[getHealth()]);
+    setRGB(balloonCols[getHealth()]);
+  }
+  
 }

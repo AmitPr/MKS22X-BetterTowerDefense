@@ -2,6 +2,7 @@ class World{
   
   
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+  public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   public Obstacle[][] map;
   
   public World(){
@@ -29,8 +30,8 @@ class World{
       }
     }
     updatePathFindingMap();
-    enemies.add(new Balloon(0,0,1,1));
-    enemies.get(0).setSpeed(4);
+    enemies.add(new Balloon(0,0,(int) random(4)));
+    
   }
   
   public boolean updatePathFindingMap(){
@@ -125,10 +126,17 @@ class World{
   public void tick(){
     background(46,125,50);
     
+    for(int i = 0; i < bullets.size(); i++){
+      Bullet b = bullets.get(i);
+      b.display();
+      if(i >= bullets.size() || b!=bullets.get(i)){
+        i--;
+      }
+    }
     for(int i = 0; i < enemies.size(); i++){
       Enemy e=enemies.get(i);
       e.display();
-      if(e!=enemies.get(i)){
+      if(i >= enemies.size() || e!=enemies.get(i)){
         i--;
       }
     }
@@ -140,8 +148,17 @@ class World{
       }
     }
     if(random(60)<1){
-      enemies.add(new Balloon(0,0,1,1));
-      enemies.get(enemies.size()-1).setSpeed(4);
+      enemies.add(new Balloon(0,0,(int) random(4)));
+      //enemies.get(enemies.size()-1).setSpeed(4);
+    }
+    
+    //println("Tower count: "+Integer.toString(towerCounter)); 
+    for(int i = 0; i < enemies.size(); i++){
+      Enemy e=enemies.get(i);
+      e.display();
+      if(i<enemies.size() && e!=enemies.get(i)){
+        i--;
+      }
     }
     for(int y = 0; y < WORLD_HEIGHT; y++){
       for(int x = 0; x < WORLD_HEIGHT; x++){
