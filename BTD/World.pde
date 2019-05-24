@@ -147,7 +147,7 @@ class World{
          }
       }
     }
-    if(random(60)<1){
+    if(random(10)<1){
       enemies.add(new Balloon(0,0,(int) random(4)));
       //enemies.get(enemies.size()-1).setSpeed(4);
     }
@@ -156,6 +156,7 @@ class World{
     for(int i = 0; i < enemies.size(); i++){
       Enemy e=enemies.get(i);
       e.display();
+      if(e.isDead()){enemies.remove(e);}
       if(i<enemies.size() && e!=enemies.get(i)){
         i--;
       }
