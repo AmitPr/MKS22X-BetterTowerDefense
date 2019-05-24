@@ -4,7 +4,7 @@ public class DartTower extends Tower{
      timeTillNextFire=reloadTime=1;
      r=g=115;
      b=55;
-     this.price=200;
+     this.price=towerPrices[0];
    }
    public void display(){
      super.display();

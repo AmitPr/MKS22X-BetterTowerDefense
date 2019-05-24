@@ -3,7 +3,7 @@ public class WallTower extends Tower{
      super(x,y,maxHealth); 
      timeTillNextFire=reloadTime=Float.MAX_VALUE;
      r=g=b=115;
-     this.price=20;
+     this.price=towerPrices[1];
    }
    public void display(){
      super.display();
