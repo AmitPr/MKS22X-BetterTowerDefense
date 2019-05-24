@@ -18,3 +18,5 @@ Mario: Started working on different ballons generating.
 #### 5/23/19
 Amit: Started working on Bullet and Tower classes to allow for shooting balloons. Ran into some thinking problems concerning collision between bullets and balloons. Thinking about using the pixel buffer and checking for balloons.
 Mario: Added different speeds and types of balloons. Found an issue where balloons with a "speed" of 3 (specifically) would pathfind correctly to the player's base but get stuck on the last tile...
+#### 5/24/19
+Amit: Implemented dart towers and their shooting, walls (basically towers with no fire), found an issue where balloons hit with bullets would start going in one direction forever. Tweaked balloons speeds as well.
