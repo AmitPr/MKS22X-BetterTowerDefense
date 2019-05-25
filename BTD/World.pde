@@ -176,6 +176,8 @@ class World{
         map[y][x]=new DartTower(x,y,100);
       }else if (key=='w'){
         map[y][x]=new WallTower(x,y,100); 
+      }else if (key=='f'){
+        map[y][x]=new FreezeTower(x,y,100);
       }
       if(map[y][x]!=null){
       if(map[y][x].price>player.money){

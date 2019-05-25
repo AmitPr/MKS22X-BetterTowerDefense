@@ -1,6 +1,6 @@
 abstract class Enemy{
   
-  private int health;
+  protected int health;
   private float x;
   private float y;
   private float speed;
@@ -36,8 +36,9 @@ abstract class Enemy{
     }
     return false;
   }
-  public void damage(int damageAmount){
+  public void damage(int damageAmount){ " + health +  " " + damageAmount);
    this.health-=damageAmount; 
+    println(health +  " " + damageAmount);
    if(health<0){
      world.enemies.remove(this);
    }
@@ -51,22 +52,28 @@ abstract class Enemy{
       currentDirection=direction;
     }
     isMoving=true;
-    switch(currentDirection){
-      case 0: //north
-        y-=1/(4*speed);
-        break;
-      case 1: //east
-        x+=1/(4*speed);
-        break;
-      case 2: //south
-        y+=1/(4*speed);
-        break;
-      case 3: //west
-        x-=1/(4*speed);
-        break;
-      default:
-        break;
-    } 
+    float curSpeed = speed;
+    for(Effect e : effects){
+      curSpeed*=e.getMultiplier();
+    }
+    if(curSpeed!=0){
+      switch(currentDirection){
+        case 0: //north
+          y-=1/(4*curSpeed);
+          break;
+        case 1: //east
+          x+=1/(4*curSpeed);
+          break;
+        case 2: //south
+          y+=1/(4*curSpeed);
+          break;
+        case 3: //west
+          x-=1/(4*curSpeed);
+          break;
+        default:
+          break;
+      } 
+    }
     if(abs(round(x)-x) < 0.0001 && abs(round(y)-y)<0.0001){
       isMoving=false;
     }
@@ -138,6 +145,14 @@ abstract class Enemy{
   public void display(){
     ellipseMode(RADIUS);
     fill(r,g,b);
+    for(int i = 0; i < effects.size(); i++){
+       Effect e = effects.get(i);
+       e.reduceDuration(1/frameRate);
+       if(e.isExpired()){
+         effects.remove(e);
+         i--;
+       }
+    }
     move(getDirection());
     ellipse(width/WORLD_WIDTH*(x+0.5),height/WORLD_HEIGHT*(y+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
   }

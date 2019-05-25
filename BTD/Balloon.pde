@@ -8,11 +8,13 @@ public class Balloon extends Enemy{
   public void damage(int amt){
     super.damage(amt);
     player.money+=amt;
-    if(getHealth()<0){
+    if(health >=0){
+      setSpeed(balloonSpeeds[health]);
+      setRGB(balloonCols[health]);
+    }
+    else{
       return;
     }
-    setSpeed(balloonSpeeds[getHealth()]);
-    setRGB(balloonCols[getHealth()]);
   }
   
 }
