@@ -6,6 +6,8 @@ abstract class Bullet{
   float y;
   float dx;
   float dy;
+  boolean repeatHits = false;
+  ArrayList<Enemy> alreadyHit = new ArrayList<Enemy>();
   float radians;
   Tower parent;
   public Bullet(Tower parent, Enemy target){
@@ -26,6 +28,10 @@ abstract class Bullet{
       world.bullets.remove(this);
       return;
     }
+    if(x > WORLD_WIDTH || x < 0 || y > WORLD_HEIGHT || y < 0){
+      world.bullets.remove(this);
+      return;
+    }
     int screenX = (int)(width/WORLD_WIDTH*x);
     int screenY = (int)(height/WORLD_HEIGHT*y);
     pushMatrix();
@@ -40,14 +46,17 @@ abstract class Bullet{
     float minSquareDist = Float.MAX_VALUE;
     Enemy closest=null;
     for(Enemy e : world.enemies){
-      float squareDist=abs(pow((e.getX()-x),2)+pow((e.getY()-y),2));
-      if(squareDist<minSquareDist){
-         closest=e;
-         minSquareDist=squareDist;
+      if(repeatHits || !alreadyHit.contains(e)){
+        float squareDist=abs(pow((e.getX()-x),2)+pow((e.getY()-y),2));
+        if(squareDist<minSquareDist){
+           closest=e;
+           minSquareDist=squareDist;
+        }
       }
     }
     if(minSquareDist<=1){
        int toDamage = damagePerEnemy<damage?damagePerEnemy:damage;
+       alreadyHit.add(closest);
        closest.damage(toDamage); 
        damage-=toDamage;
     }

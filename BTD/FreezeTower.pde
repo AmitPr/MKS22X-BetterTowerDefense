@@ -26,8 +26,8 @@ public class FreezeTower extends Tower{
    }
    public void fire(Enemy e){
       if(!e.hasEffect("freeze")){
-        e.addEffect(new Effect(0,1,"freeze"));
+        e.addEffect(new Effect(5,2,"freeze"));
       }
-      e.damage(2);
+      e.damage(1);
    }
 }

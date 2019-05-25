@@ -6,6 +6,7 @@ abstract class Enemy{
   private float speed;
   private float r,g,b;
   private int currentDirection;
+  private float distanceMoved;
   private boolean isMoving = false;
   private ArrayList<Effect> effects = new ArrayList<Effect>();
   
@@ -13,6 +14,7 @@ abstract class Enemy{
     this.x=x;
     this.y=y;
     this.health=health;
+    this.distanceMoved=0;
     r=g=b=random(255);
   }
   
@@ -36,12 +38,11 @@ abstract class Enemy{
     }
     return false;
   }
-  public void damage(int damageAmount){ " + health +  " " + damageAmount);
-   this.health-=damageAmount; 
-    println(health +  " " + damageAmount);
-   if(health<0){
-     world.enemies.remove(this);
-   }
+  public void damage(int damageAmount){
+    this.health-=damageAmount; 
+     if(health<=0){
+       world.enemies.remove(this);
+     }
   }
   public boolean isDead(){
     return getHealth()<=0;
@@ -57,6 +58,7 @@ abstract class Enemy{
       curSpeed*=e.getMultiplier();
     }
     if(curSpeed!=0){
+      distanceMoved+=1/(4*curSpeed);
       switch(currentDirection){
         case 0: //north
           y-=1/(4*curSpeed);
@@ -74,8 +76,9 @@ abstract class Enemy{
           break;
       } 
     }
-    if(abs(round(x)-x) < 0.0001 && abs(round(y)-y)<0.0001){
+    if(distanceMoved>=1){
       isMoving=false;
+      distanceMoved=0;
     }
     if((round(x)==WORLD_WIDTH-1 || round(x)==WORLD_WIDTH-2)&&(round(y)==WORLD_HEIGHT-1 || round(y)==WORLD_HEIGHT-2)){
       player.health-=health;
