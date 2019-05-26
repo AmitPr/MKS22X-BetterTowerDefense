@@ -20,3 +20,5 @@ Amit: Started working on Bullet and Tower classes to allow for shooting balloons
 Mario: Added different speeds and types of balloons. Found an issue where balloons with a "speed" of 3 (specifically) would pathfind correctly to the player's base but get stuck on the last tile...
 #### 5/24/19
 Amit: Implemented dart towers and their shooting, walls (basically towers with no fire), found an issue where balloons hit with bullets would start going in one direction forever. Tweaked balloons speeds as well.
+#### 5/25/19  
+Amit: Added Freeze Tower, started working on fixing some bugs with damage and balloons floating through the walls. Fixed the issue by changing the way balloons move a little bit. Added effects class to balloons so that they can be modified by towers (used by freeze to slow balloons)
