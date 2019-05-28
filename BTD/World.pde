@@ -4,7 +4,7 @@ class World{
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   public ArrayList<WaveAction> currentWave= new ArrayList<WaveAction>();
-  public int waveNum = 0;
+  public int waveNum = 1;
   public Obstacle[][] map;
   
   public World(){
@@ -31,12 +31,11 @@ class World{
       }
     }
     updatePathFindingMap();
-    enemies.add(new Balloon(0,0,(int) random(4)));
-    
+    currentWave=getWave(1);
   }
   public ArrayList<WaveAction> getWave(int waveNum){
     ArrayList<WaveAction> toReturn = new ArrayList<WaveAction>();
-    toReturn.add(new WaveAction(0,waveNum,3));
+    toReturn.add(new WaveAction(0,waveNum,60/waveNum));
     return toReturn;
   }
   public boolean updatePathFindingMap(){
@@ -130,7 +129,14 @@ class World{
   }
   public void tick(){
     background(46,125,50);
-    
+    if(currentWave.size()>0){
+      currentWave.get(0).tick();
+      if(currentWave.get(0).isDone()){
+       currentWave.remove(0); 
+      }
+    }else{
+      currentWave=getWave(waveNum++);
+    }
     for(int y = 0; y < map.length; y++){
       for(int x = 0; x < map[y].length;x++){
          if(map[y][x]!=null){

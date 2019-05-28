@@ -27,6 +27,7 @@ class WaveAction{
         return;
       }
       Enemy e = new Balloon(0,0,type);
+      world.enemies.add(e);
       enemyCount--;
       timeTillNext=enemySpacing;
       
