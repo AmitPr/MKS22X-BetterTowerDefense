@@ -35,7 +35,9 @@ class World{
     
   }
   public ArrayList<WaveAction> getWave(int waveNum){
-    
+    ArrayList<WaveAction> toReturn = new ArrayList<WaveAction>();
+    toReturn.add((0,waveNum,3))
+    return toReturn;
   }
   public boolean updatePathFindingMap(){
     
@@ -150,10 +152,7 @@ class World{
         i--;
       }
     }
-    if(random(10)<1){
-      enemies.add(new Balloon(0,0,(int) random(4)));
-      //enemies.get(enemies.size()-1).setSpeed(4);
-    }
+    
     
     //println("Tower count: "+Integer.toString(towerCounter)); 
     for(int i = 0; i < enemies.size(); i++){
