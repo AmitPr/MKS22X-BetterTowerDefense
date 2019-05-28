@@ -170,7 +170,6 @@ class World{
       }
     }
   }
-  
    void onMouseClick(){
     int y = screenToWorldY(mouseY);
     int x = screenToWorldX(mouseX);

@@ -21,9 +21,16 @@ void setup(){
 }
 void draw(){
   world.tick();
+  if(height > width){
+    
+  }else{
+    fill(0);
+    rect(height,0,width-height,height);
+  }
 }
 void mouseClicked(){
-  world.onMouseClick();
+  if(mouseX<WIDTH&&mouseY<HEIGHT)
+    world.onMouseClick();
 }
 public boolean isValidCoord(int x, int y){
   if(0 <= x && x < BTD.WORLD_WIDTH && 0 <= y && y < BTD.WORLD_HEIGHT){
