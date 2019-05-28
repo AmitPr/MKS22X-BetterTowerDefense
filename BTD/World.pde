@@ -3,6 +3,8 @@ class World{
   
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+  public ArrayList<WaveAction> currentWave= new ArrayList<WaveAction>();
+  public int waveNum = 0;
   public Obstacle[][] map;
   
   public World(){
@@ -32,7 +34,9 @@ class World{
     enemies.add(new Balloon(0,0,(int) random(4)));
     
   }
-  
+  public ArrayList<WaveAction> getWave(int waveNum){
+    
+  }
   public boolean updatePathFindingMap(){
     
     int[][] newPathFindingMap = new int[BTD.WORLD_WIDTH][BTD.WORLD_HEIGHT];
