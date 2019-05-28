@@ -163,7 +163,7 @@ class World{
     for(int y = 0; y < WORLD_HEIGHT; y++){
       for(int x = 0; x < WORLD_HEIGHT; x++){
         fill(255,255,255);
-        text(pathFindingMap[y][x],width/BTD.WORLD_WIDTH * x+10,height/BTD.WORLD_HEIGHT*y+10);
+        text(pathFindingMap[y][x],WIDTH/BTD.WORLD_WIDTH * x+10,HEIGHT/BTD.WORLD_HEIGHT*y+10);
       }
     }
   }
@@ -199,10 +199,10 @@ class World{
   }
   
   public  int screenToWorldX(int x){
-    return (int)(x/(float)width*(float)BTD.WORLD_WIDTH);
+    return (int)(x/(float)WIDTH*(float)BTD.WORLD_WIDTH);
   }
   
   public  int screenToWorldY(int y){
-    return (int)(y/(float)height*(float)BTD.WORLD_HEIGHT);
+    return (int)(y/(float)HEIGHT*(float)BTD.WORLD_HEIGHT);
   }
 }

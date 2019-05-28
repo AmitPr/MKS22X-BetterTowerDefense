@@ -7,8 +7,8 @@ public class Player extends Tower{
   }
   public void display(){
     fill(0,255,0);
-    rect(width/WORLD_WIDTH * x,height/WORLD_HEIGHT*y,width/WORLD_WIDTH*2,height/WORLD_HEIGHT*2); 
-    text("$"+Integer.toString(money),width/WORLD_WIDTH * x,height/WORLD_HEIGHT*y);
-    text("HP: "+Integer.toString(health) +"/"+STARTING_HEALTH,width/WORLD_WIDTH * x+50,height/WORLD_HEIGHT*y);
+    rect(WIDTH/WORLD_WIDTH * x,HEIGHT/WORLD_HEIGHT*y,WIDTH/WORLD_WIDTH*2,HEIGHT/WORLD_HEIGHT*2); 
+    text("$"+Integer.toString(money),WIDTH/WORLD_WIDTH * x,HEIGHT/WORLD_HEIGHT*y);
+    text("HP: "+Integer.toString(health) +"/"+STARTING_HEALTH,WIDTH/WORLD_WIDTH * x+50,HEIGHT/WORLD_HEIGHT*y);
   }
 }

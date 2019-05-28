@@ -32,14 +32,14 @@ abstract class Bullet{
       world.bullets.remove(this);
       return;
     }
-    int screenX = (int)(width/WORLD_WIDTH*x);
-    int screenY = (int)(height/WORLD_HEIGHT*y);
+    int screenX = (int)(WIDTH/WORLD_WIDTH*x);
+    int screenY = (int)(HEIGHT/WORLD_HEIGHT*y);
     pushMatrix();
     translate(screenX,screenY);
     rotate(radians);
     translate(-screenX,-screenY);
     fill(0);
-    rect(screenX,screenY,(width/WORLD_WIDTH*0.1),(height/WORLD_HEIGHT*0.1));
+    rect(screenX,screenY,(WIDTH/WORLD_WIDTH*0.1),(HEIGHT/WORLD_HEIGHT*0.1));
     popMatrix();
   }
   private void damageCheck(){

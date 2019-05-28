@@ -157,6 +157,6 @@ abstract class Enemy{
        }
     }
     move(getDirection());
-    ellipse(width/WORLD_WIDTH*(x+0.5),height/WORLD_HEIGHT*(y+0.5),width/WORLD_WIDTH/2,height/WORLD_HEIGHT/2);
+    ellipse(WIDTH/WORLD_WIDTH*(x+0.5),HEIGHT/WORLD_HEIGHT*(y+0.5),WIDTH/WORLD_WIDTH/2,HEIGHT/WORLD_HEIGHT/2);
   }
 }

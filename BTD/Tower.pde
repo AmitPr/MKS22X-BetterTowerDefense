@@ -14,6 +14,7 @@ abstract class Tower extends Obstacle {
     fill(r,g,b);
     timeTillNextFire-=1/frameRate;
     if(timeTillNextFire<=0){
+      boolean hasFired = false;
       float minSquareDist = Float.MAX_VALUE;
       Enemy closest=null;
       for(Enemy e : world.enemies){
@@ -23,11 +24,16 @@ abstract class Tower extends Obstacle {
            minSquareDist=squareDist;
         }
       }
-      if(minSquareDist <= 100)
+      if(minSquareDist <= 100){
+        hasFired=true;
         fire(closest); 
+      }
+      if(hasFired)
        timeTillNextFire=reloadTime;
+     else
+       timeTillNextFire=0;
     }
-    rect(width/BTD.WORLD_WIDTH * x,height/BTD.WORLD_HEIGHT*y,width/BTD.WORLD_WIDTH,height/BTD.WORLD_HEIGHT);
+    rect(WIDTH/BTD.WORLD_WIDTH * x,HEIGHT/BTD.WORLD_HEIGHT*y,WIDTH/BTD.WORLD_WIDTH,HEIGHT/BTD.WORLD_HEIGHT);
   }
   public void fire(Enemy e){
     Dart d = new Dart(this,e);
