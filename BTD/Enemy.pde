@@ -89,16 +89,20 @@ abstract class Enemy{
   public int getDirection(){
     int x_inted = round(x);
     int y_inted = round(y);
-    if(x_inted==y_inted && x_inted==0){
-      if(pathFindingMap[0][1]==pathFindingMap[1][0]){
-        return (int) random(2)+1;
-      }
-      else{
-        if(pathFindingMap[0][1]<pathFindingMap[1][0]){
-          return 1;
-        }
+    if(x_inted==0 && y_inted==0){
+      if(pathFindingMap[1][0]==pathFindingMap[0][1]){
+        return (int) random(2)+1;  
+      }else if(pathFindingMap[1][0]<pathFindingMap[0][1]){
         return 2;
+      }else{
+        return 1;
       }
+    }
+    if(y_inted == 1 && x_inted ==0 && pathFindingMap[y_inted+1][x_inted]<0){
+      return 1;
+    }
+    if(y_inted == 0 && x_inted ==1 && pathFindingMap[y_inted][x_inted+1]<0){
+      return 2;
     }
     ArrayList<Integer> possibleDirecs = new ArrayList<Integer>();
     if(x_inted+y_inted ==1){
@@ -109,10 +113,10 @@ abstract class Enemy{
       if(isValidCoord(x_inted-1,y_inted)&&pathFindingMap[y_inted][x_inted-1]!=-1){
         allowedMoves[3]=pathFindingMap[y_inted][x_inted-1];
       }
-      if(isValidCoord(x_inted,y_inted+1)&&pathFindingMap[y_inted+1][x_inted+1]!=-1){
+      if(isValidCoord(x_inted,y_inted+1)&&pathFindingMap[y_inted+1][x_inted]!=-1){
         allowedMoves[2]=pathFindingMap[y_inted+1][x_inted];
       }
-      if(isValidCoord(x_inted,y_inted-1)&&pathFindingMap[y_inted-1][x_inted+1]!=-1){
+      if(isValidCoord(x_inted,y_inted-1)&&pathFindingMap[y_inted-1][x_inted]!=-1){
         allowedMoves[0]=pathFindingMap[y_inted-1][x_inted];
       }
       int min = min(allowedMoves);
@@ -123,6 +127,7 @@ abstract class Enemy{
       }
       return possibleDirecs.get((int)(random(possibleDirecs.size())));
     }
+    
     
     int[] allowedMoves = new int[]{Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE};
     if(isValidCoord(x_inted+1,y_inted) && (world.map[y_inted][x_inted+1]==null || (x+1 >= WORLD_WIDTH-2) && (y >= WORLD_HEIGHT-2))){
