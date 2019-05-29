@@ -8,6 +8,7 @@ abstract class Enemy{
   private int currentDirection;
   private float distanceMoved;
   private boolean isMoving = false;
+  private float radiiAsPercent = 1;
   private ArrayList<Effect> effects = new ArrayList<Effect>();
   
   public Enemy(float x, float y, int health){
@@ -31,6 +32,8 @@ abstract class Enemy{
   public void addEffect(Effect e){
    this.effects.add(e); 
   }
+  public void setRadiusAsPercent(float radiusPer){this.radiiAsPercent=radiusPer;}
+  public float getRadiusAsPercent(){return this.radiiAsPercent;}
   public boolean hasEffect(String name){
     for(Effect e : effects){
       if(name==e.getName())
@@ -157,6 +160,6 @@ abstract class Enemy{
        }
     }
     move(getDirection());
-    ellipse(WIDTH/WORLD_WIDTH*(x+0.5),HEIGHT/WORLD_HEIGHT*(y+0.5),WIDTH/WORLD_WIDTH/2,HEIGHT/WORLD_HEIGHT/2);
+    ellipse(WIDTH/WORLD_WIDTH*(x+0.5),HEIGHT/WORLD_HEIGHT*(y+0.5),radiiAsPercent*WIDTH/WORLD_WIDTH/2,radiiAsPercent*HEIGHT/WORLD_HEIGHT/2);
   }
 }

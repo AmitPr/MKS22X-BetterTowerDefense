@@ -4,6 +4,7 @@ public class Balloon extends Enemy{
     setHealth(balloonHealths[bal]);
     setSpeed(balloonSpeeds[bal]);
     setRGB(balloonCols[bal]);
+    setRadiusAsPercent(balloonRadiiAsPercent[bal]);
   }
   public void damage(int amt){
     super.damage(amt);
