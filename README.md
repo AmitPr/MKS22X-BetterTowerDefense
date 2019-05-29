@@ -22,3 +22,6 @@ Mario: Added different speeds and types of balloons. Found an issue where balloo
 Amit: Implemented dart towers and their shooting, walls (basically towers with no fire), found an issue where balloons hit with bullets would start going in one direction forever. Tweaked balloons speeds as well.
 #### 5/25/19  
 Amit: Added Freeze Tower, started working on fixing some bugs with damage and balloons floating through the walls. Fixed the issue by changing the way balloons move a little bit. Added effects class to balloons so that they can be modified by towers (used by freeze to slow balloons)
+#### 5/28/19
+Amit: Resized screen into a square the whole time, fixed the waves from not doing anything, fixed an index out of bounds.
+Amit & Mario: Both worked on creating waves of enemies Initial system together.
