@@ -27,6 +27,9 @@ class WaveAction{
         return;
       }
       Enemy e = new Balloon(0,0,type);
+      if(type>=4){
+        e = new Moab(0,0,type);
+      }  
       world.enemies.add(e);
       enemyCount--;
       timeTillNext=enemySpacing;

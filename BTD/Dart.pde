@@ -3,6 +3,6 @@ class Dart extends Bullet{
     super(parent,target);
     this.damage=3;
     this.damagePerEnemy=1;
-    speed=0.75;
+    speed=0.25;
   }
 }

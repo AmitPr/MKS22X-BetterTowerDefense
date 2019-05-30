@@ -35,7 +35,10 @@ class World{
   }
   public ArrayList<WaveAction> getWave(int waveNum){
     ArrayList<WaveAction> toReturn = new ArrayList<WaveAction>();
-    toReturn.add(new WaveAction(0,waveNum,60/waveNum));
+    toReturn.add(new WaveAction(0,waveNum,20+60/waveNum));
+    if(waveNum%5==0){
+      toReturn.add(new WaveAction(4,1,20+60/waveNum));
+    }
     return toReturn;
   }
   public boolean updatePathFindingMap(){
