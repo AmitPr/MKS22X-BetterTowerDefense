@@ -232,6 +232,8 @@ class World{
         map[y][x]=new WallTower(x,y,100); 
       }else if (key=='f'){
         map[y][x]=new FreezeTower(x,y,100);
+      }else if (key == 't'){
+        map[y][x]=new TackTower(x,y,100);
       }
       if(map[y][x]!=null){
       if(map[y][x].price>player.money){
@@ -259,7 +261,6 @@ class World{
   public  int screenToWorldY(int y){
     return (int)(y/(float)HEIGHT*(float)BTD.WORLD_HEIGHT);
   }
-  
   public boolean isValidCoord(int x, int y){
     if(0 <= x && x < BTD.WORLD_WIDTH && 0 <= y && y < BTD.WORLD_HEIGHT){
       return true;
