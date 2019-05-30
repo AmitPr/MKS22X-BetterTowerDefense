@@ -8,7 +8,7 @@ public static final float SELL_RATIO=0.8;
 public static final int STARTING_MONEY=1000;
 public static final int STARTING_HEALTH=100;
 public static int[][] pathFindingMap;
-public static final int[] towerPrices = new int[]{200,20,350};
+public static final int[] towerPrices = new int[]{200,20,350,300};
 public static final int[] balloonHealths = new int[]{1,2,3,4,50};
 public static final int[] balloonSpeeds = new int[]{8,6,5,4,16};
 public static final int[][] balloonCols = new int[][]{{255,0,0},{0,0,255},{0,255,0},{255,192,203},{255,0,255}};
