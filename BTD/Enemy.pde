@@ -34,6 +34,12 @@ abstract class Enemy{
   }
   public void setRadiusAsPercent(float radiusPer){this.radiiAsPercent=radiusPer;}
   public float getRadiusAsPercent(){return this.radiiAsPercent;}
+  public boolean isValidCoord(int x, int y){
+    if(0 <= x && x < BTD.WORLD_WIDTH && 0 <= y && y < BTD.WORLD_HEIGHT && pathFindingMap[y][x]>-1){
+      return true;
+    }
+    return false;
+  }
   public boolean hasEffect(String name){
     for(Effect e : effects){
       if(name==e.getName())
@@ -104,46 +110,37 @@ abstract class Enemy{
     if(y_inted == 1 && x_inted ==0 && pathFindingMap[y_inted+1][x_inted]<0){
       return 1;
     }
+    ArrayList<Integer> possibleDirecs = new ArrayList<Integer>();
     if(y_inted == 0 && x_inted ==1 && pathFindingMap[y_inted][x_inted+1]<0){
       return 2;
     }
-    ArrayList<Integer> possibleDirecs = new ArrayList<Integer>();
-    if(x_inted+y_inted ==1){
       int[] allowedMoves = new int[]{Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE};
-      if(isValidCoord(x_inted+1,y_inted)&&pathFindingMap[y_inted][x_inted+1]!=-1){
+    if(x_inted+y_inted ==1){
+      if(isValidCoord(x_inted+1,y_inted)){
         allowedMoves[1]=pathFindingMap[y_inted][x_inted+1];
       }
-      if(isValidCoord(x_inted-1,y_inted)&&pathFindingMap[y_inted][x_inted-1]!=-1){
+      if(isValidCoord(x_inted-1,y_inted)){
         allowedMoves[3]=pathFindingMap[y_inted][x_inted-1];
       }
-      if(isValidCoord(x_inted,y_inted+1)&&pathFindingMap[y_inted+1][x_inted]!=-1){
+      if(isValidCoord(x_inted,y_inted+1)){
         allowedMoves[2]=pathFindingMap[y_inted+1][x_inted];
       }
-      if(isValidCoord(x_inted,y_inted-1)&&pathFindingMap[y_inted-1][x_inted]!=-1){
+      if(isValidCoord(x_inted,y_inted-1)){
         allowedMoves[0]=pathFindingMap[y_inted-1][x_inted];
       }
-      int min = min(allowedMoves);
-      for(int i = 0; i < 4;i++){
-        if(allowedMoves[i]==min){
-          possibleDirecs.add(i);
-        }
+    }else{
+      if(isValidCoord(x_inted+1,y_inted)){
+        allowedMoves[1]=pathFindingMap[y_inted][x_inted+1];
       }
-      return possibleDirecs.get((int)(random(possibleDirecs.size())));
-    }
-    
-    
-    int[] allowedMoves = new int[]{Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE,Integer.MAX_VALUE};
-    if(isValidCoord(x_inted+1,y_inted) && (world.map[y_inted][x_inted+1]==null || (x+1 >= WORLD_WIDTH-2) && (y >= WORLD_HEIGHT-2))){
-      allowedMoves[1]=pathFindingMap[y_inted][x_inted+1];
-    }
-    if(isValidCoord(x_inted-1,y_inted)&& (world.map[y_inted][x_inted-1]==null || (x-1 >= WORLD_WIDTH-2) && (y >= WORLD_HEIGHT-2))){
-      allowedMoves[3]=pathFindingMap[y_inted][x_inted-1];
-    }
-    if(isValidCoord(x_inted,y_inted+1)&& (world.map[y_inted+1][x_inted]==null || (x >= WORLD_WIDTH-2) && (y+1 >= WORLD_HEIGHT-2))){
-      allowedMoves[2]=pathFindingMap[y_inted+1][x_inted];
-    }
-    if(isValidCoord(x_inted,y_inted-1)&& (world.map[y_inted-1][x_inted]==null || (x >= WORLD_WIDTH-2) && (y-1 >= WORLD_HEIGHT-2))){
-      allowedMoves[0]=pathFindingMap[y_inted-1][x_inted];
+      if(isValidCoord(x_inted-1,y_inted)){
+        allowedMoves[3]=pathFindingMap[y_inted][x_inted-1];
+      }
+      if(isValidCoord(x_inted,y_inted+1)){
+        allowedMoves[2]=pathFindingMap[y_inted+1][x_inted];
+      }
+      if(isValidCoord(x_inted,y_inted-1)){
+        allowedMoves[0]=pathFindingMap[y_inted-1][x_inted];
+      }
     }
     int min = min(allowedMoves);
     for(int i = 0; i < 4;i++){
@@ -165,6 +162,8 @@ abstract class Enemy{
        }
     }
     move(getDirection());
-    ellipse(WIDTH/WORLD_WIDTH*(x+0.5),HEIGHT/WORLD_HEIGHT*(y+0.5),radiiAsPercent*WIDTH/WORLD_WIDTH/2,radiiAsPercent*HEIGHT/WORLD_HEIGHT/2);
+    enemy.setFill(color(r,g,b));
+    shape(enemy,WIDTH/WORLD_WIDTH*(x+0.5),HEIGHT/WORLD_HEIGHT*(y+0.5));
+    //ellipse(WIDTH/WORLD_WIDTH*(x+0.5),HEIGHT/WORLD_HEIGHT*(y+0.5),radiiAsPercent*WIDTH/WORLD_WIDTH/2,radiiAsPercent*HEIGHT/WORLD_HEIGHT/2);
   }
 }

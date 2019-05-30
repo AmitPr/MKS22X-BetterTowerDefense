@@ -4,7 +4,7 @@ class World{
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   public ArrayList<WaveAction> currentWave= new ArrayList<WaveAction>();
-  public int waveNum = 1;
+  public int waveNum = 10;
   public Obstacle[][] map;
   
   public World(){
@@ -31,14 +31,56 @@ class World{
       }
     }
     updatePathFindingMap();
-    currentWave=getWave(1);
   }
   public ArrayList<WaveAction> getWave(int waveNum){
     ArrayList<WaveAction> toReturn = new ArrayList<WaveAction>();
-    toReturn.add(new WaveAction(0,waveNum,20+60/waveNum));
+    switch(waveNum){
+      case 1:
+        toReturn.add(new WaveAction(0,20,8));
+      break;
+      case 2:
+        toReturn.add(new WaveAction(0,35,7));
+      break;
+      case 3:
+        toReturn.add(new WaveAction(0,25,8));
+        toReturn.add(new WaveAction(1,5,15));
+      break;
+      case 4:
+        toReturn.add(new WaveAction(0,35,7));
+        toReturn.add(new WaveAction(1,18,10));
+      break;
+      case 5:
+        toReturn.add(new WaveAction(0,5,3));
+        toReturn.add(new WaveAction(1,27,7));
+      break;
+      case 6:
+        toReturn.add(new WaveAction(0,15,4));
+        toReturn.add(new WaveAction(1,15,8));
+        toReturn.add(new WaveAction(2,4,20));
+      break;
+      case 7:
+        toReturn.add(new WaveAction(0,20,4));
+        toReturn.add(new WaveAction(1,20,8));
+        toReturn.add(new WaveAction(2,5,15));
+      break;
+      case 8:
+        toReturn.add(new WaveAction(0,10,4));
+        toReturn.add(new WaveAction(1,20,7));
+        toReturn.add(new WaveAction(2,14,10));
+      break;
+      case 9:
+        toReturn.add(new WaveAction(2,30,8));
+      break;
+      case 10:
+        toReturn.add(new WaveAction(1,102,1));
+      break;
+      default:
+      break;
+    }
+    /*toReturn.add(new WaveAction(0,waveNum,20+60/waveNum));
     if(waveNum%5==0){
       toReturn.add(new WaveAction(4,1,20+60/waveNum));
-    }
+    }*/
     return toReturn;
   }
   public boolean updatePathFindingMap(){
@@ -138,7 +180,8 @@ class World{
        currentWave.remove(0); 
       }
     }else{
-      currentWave=getWave(waveNum++);
+      if(enemies.size()==0)
+        currentWave=getWave(waveNum++);
     }
     for(int y = 0; y < map.length; y++){
       for(int x = 0; x < map[y].length;x++){
@@ -215,5 +258,12 @@ class World{
   
   public  int screenToWorldY(int y){
     return (int)(y/(float)HEIGHT*(float)BTD.WORLD_HEIGHT);
+  }
+  
+  public boolean isValidCoord(int x, int y){
+    if(0 <= x && x < BTD.WORLD_WIDTH && 0 <= y && y < BTD.WORLD_HEIGHT){
+      return true;
+    }
+    return false;
   }
 }

@@ -13,11 +13,14 @@ public static final int[] balloonHealths = new int[]{1,2,3,4,50};
 public static final int[] balloonSpeeds = new int[]{8,6,5,4,16};
 public static final int[][] balloonCols = new int[][]{{255,0,0},{0,0,255},{0,255,0},{255,192,203},{255,0,255}};
 public static final float[] balloonRadiiAsPercent = new float[]{0.7,0.7,0.7,0.7,1};
+public static PShape enemy;
 void setup(){
   fullScreen();
   frameRate(60);
   HEIGHT=height>width?width:height;
   WIDTH=height>width?width:height;
+  enemy = createShape(ELLIPSE,0,0,WIDTH/WORLD_WIDTH/2,HEIGHT/WORLD_HEIGHT/2);
+  enemy.setStroke(false);
   world = new World();
 }
 void draw(){
@@ -32,10 +35,4 @@ void draw(){
 void mouseClicked(){
   if(mouseX<WIDTH&&mouseY<HEIGHT)
     world.onMouseClick();
-}
-public boolean isValidCoord(int x, int y){
-  if(0 <= x && x < BTD.WORLD_WIDTH && 0 <= y && y < BTD.WORLD_HEIGHT){
-    return true;
-  }
-  return false;
 }

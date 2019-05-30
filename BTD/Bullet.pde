@@ -54,7 +54,7 @@ abstract class Bullet{
         }
       }
     }
-    if(minSquareDist<=1){
+    if(closest!=null&&minSquareDist<=pow(closest.getRadiusAsPercent(),2)){
        int toDamage = damagePerEnemy<damage?damagePerEnemy:damage;
        alreadyHit.add(closest);
        closest.damage(toDamage); 
