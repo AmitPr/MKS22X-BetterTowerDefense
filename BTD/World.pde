@@ -4,7 +4,7 @@ class World{
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   public ArrayList<WaveAction> currentWave= new ArrayList<WaveAction>();
-  public int waveNum = 10;
+  public int waveNum = 1;
   public Obstacle[][] map;
   
   public World(){
