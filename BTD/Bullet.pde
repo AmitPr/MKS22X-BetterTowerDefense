@@ -20,6 +20,9 @@ abstract class Bullet{
     this.dx = cos(radians);
     this.dy = sin(radians);
   }
+  public float distFromHome(){
+    return sqrt((x-parent.x)*(x-parent.x)+(y-parent.y)*(y-parent.y));
+  }
   public void display(){
     x+=dx*speed;
     y+=dy*speed;
@@ -28,7 +31,7 @@ abstract class Bullet{
       world.bullets.remove(this);
       return;
     }
-    if(x > WORLD_WIDTH || x < 0 || y > WORLD_HEIGHT || y < 0){
+    if(x > WORLD_WIDTH || x < 0 || y > WORLD_HEIGHT || y < 0 || distFromHome()>7){
       world.bullets.remove(this);
       return;
     }

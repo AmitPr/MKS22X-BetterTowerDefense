@@ -38,9 +38,7 @@ class Tack extends Bullet{
     }
     return -1;
   }
-  public float distFromHome(){
-    return sqrt((x-parent.x)*(x-parent.x)+(y-parent.y)*(y-parent.y));
-  }
+  
   public void display(){
     super.display();
     if(distFromHome()>2){

@@ -1,4 +1,5 @@
 public class TackTower extends Tower{
+   
    public TackTower(int x, int y, int maxHealth){
      super(x,y,maxHealth); 
      timeTillNextFire=reloadTime=2;
