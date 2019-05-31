@@ -15,7 +15,7 @@ public static final int[][] balloonCols = new int[][]{{255,0,0},{0,0,255},{0,255
 public static final float[] balloonRadiiAsPercent = new float[]{0.7,0.7,0.7,0.7,1};
 public static PShape enemy;
 void setup(){
-  fullScreen();
+  fullScreen(P2D);
   frameRate(60);
   HEIGHT=height>width?width:height;
   WIDTH=height>width?width:height;
