@@ -4,7 +4,7 @@ class World{
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   public ArrayList<WaveAction> currentWave= new ArrayList<WaveAction>();
-  public int waveNum = 10;
+  public int waveNum = 1;
   public Obstacle[][] map;
   
   public World(){
@@ -73,6 +73,21 @@ class World{
       break;
       case 10:
         toReturn.add(new WaveAction(1,102,1));
+      break;
+      case 11:
+        toReturn.add(new WaveAction(0,6,5));
+        toReturn.add(new WaveAction(1,12,10));
+        toReturn.add(new WaveAction(2,12,10));
+        toReturn.add(new WaveAction(3,3,20));
+      break;
+      case 12:
+        toReturn.add(new WaveAction(1,15,8));
+        toReturn.add(new WaveAction(2,10,9));
+        toReturn.add(new WaveAction(3,5,10));
+      break;
+      case 13:
+        toReturn.add(new WaveAction(1,50,2));
+        toReturn.add(new WaveAction(2,23,6));
       break;
       default:
       break;

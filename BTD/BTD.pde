@@ -11,7 +11,7 @@ public static int[][] pathFindingMap;
 public static final int[] towerPrices = new int[]{200,20,350,300};
 public static final int[] balloonHealths = new int[]{1,2,3,4,50};
 public static final int[] balloonSpeeds = new int[]{8,6,5,4,16};
-public static final int[][] balloonCols = new int[][]{{255,0,0},{0,0,255},{0,255,0},{255,192,203},{255,0,255}};
+public static final int[][] balloonCols = new int[][]{{255,0,0},{0,0,255},{0,255,0},{255,255,0},{255,0,255}};
 public static final float[] balloonRadiiAsPercent = new float[]{0.7,0.7,0.7,0.7,1};
 public static PShape enemy;
 void setup(){

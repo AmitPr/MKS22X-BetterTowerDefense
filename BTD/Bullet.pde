@@ -12,8 +12,8 @@ abstract class Bullet{
   Tower parent;
   public Bullet(Tower parent, Enemy target){
     this.parent = parent;
-    this.x=parent.getX();
-    this.y=parent.getY();
+    this.x=parent.getX()+0.5;
+    this.y=parent.getY()+0.5;
     float ex = target.getX();
     float ey = target.getY();
     this.radians= atan2(ey-y,ex-x);
