@@ -24,7 +24,13 @@ void setup(){
   world = new World();
 }
 void draw(){
-  world.tick();
+  if(!world.isDead){
+    world.tick();
+    if(world.fast){
+      world.tick();
+    }
+  }
+  
   if(height > width){
     
   }else{

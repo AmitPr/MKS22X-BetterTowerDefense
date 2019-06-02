@@ -6,7 +6,8 @@ class World{
   public ArrayList<WaveAction> currentWave= new ArrayList<WaveAction>();
   public int waveNum = 1;
   public Obstacle[][] map;
-  
+  public boolean fast = false;
+  public boolean isDead = false;
   public World(){
     pathFindingMap = new int[BTD.WORLD_HEIGHT][BTD.WORLD_WIDTH];
     for(int i = 0; i < BTD.WORLD_HEIGHT; i ++){
@@ -187,24 +188,29 @@ class World{
    int my = round(y);
    return map[my][mx];
   }
+  public int tickCount=0;
   public void tick(){
+    tickCount++;
     background(46,125,50);
-    if(currentWave.size()>0){
-      currentWave.get(0).tick();
-      if(currentWave.get(0).isDone()){
-       currentWave.remove(0); 
+    if(tickCount>300){
+      if(currentWave.size()>0){
+        currentWave.get(0).tick();
+        if(currentWave.get(0).isDone()){
+         currentWave.remove(0); 
+        }
+      }else{
+        
+        if(enemies.size()==0)
+          currentWave=getWave(waveNum++);
       }
-    }else{
-      if(enemies.size()==0)
-        currentWave=getWave(waveNum++);
     }
     for(int y = 0; y < map.length; y++){
-      for(int x = 0; x < map[y].length;x++){
-         if(map[y][x]!=null){
-            map[y][x].display(); 
-         }
+        for(int x = 0; x < map[y].length;x++){
+           if(map[y][x]!=null){
+              map[y][x].display(); 
+           }
+        }
       }
-    }
     for(int i = 0; i < bullets.size(); i++){
       Bullet b = bullets.get(i);
       b.display();
@@ -240,6 +246,7 @@ class World{
    void onMouseClick(){
     int y = screenToWorldY(mouseY);
     int x = screenToWorldX(mouseX);
+    
     if(map[y][x]==null){
       if(key=='d'){
         map[y][x]=new DartTower(x,y,100);
@@ -249,6 +256,8 @@ class World{
         map[y][x]=new FreezeTower(x,y,100);
       }else if (key == 't'){
         map[y][x]=new TackTower(x,y,100);
+      }else if (key == 'l'){
+        fast=!fast;
       }
       if(map[y][x]!=null){
       if(map[y][x].price>player.money){
@@ -268,7 +277,17 @@ class World{
      updatePathFindingMap();
     }
   }
-  
+  public void die(){
+    fill(255,0,0);
+    textAlign(CENTER);
+    textSize(60);
+    text("Game over, you got to round "+waveNum,height/2,height/2);
+    textSize(40);
+    //text("hit R to play again",height/2,height/2+50);
+    isDead=true;
+    textSize(12);
+    textAlign(LEFT);
+  }
   public  int screenToWorldX(int x){
     return (int)(x/(float)WIDTH*(float)BTD.WORLD_WIDTH);
   }
