@@ -90,6 +90,20 @@ class World{
         toReturn.add(new WaveAction(1,50,2));
         toReturn.add(new WaveAction(2,23,6));
       break;
+      case 14:
+        toReturn.add(new WaveAction(0,49,5));
+        toReturn.add(new WaveAction(1,15,10));
+        toReturn.add(new WaveAction(2,10,10));
+        toReturn.add(new WaveAction(3,9,20));
+      case 15:
+        toReturn.add(new WaveAction(0,20,5));
+        toReturn.add(new WaveAction(1,15,10));
+        toReturn.add(new WaveAction(2,12,10));
+        toReturn.add(new WaveAction(3,10,20));
+        toReturn.add(new WaveAction(4,5,20));
+      case 16:
+        toReturn.add(new WaveAction(2,40,10));
+        toReturn.add(new WaveAction(3,8,20));  
       default:
       break;
     }

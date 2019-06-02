@@ -11,7 +11,7 @@ public class Balloon extends Enemy{
   public void damage(int amt){
     super.damage(amt);
     player.money+=amt;
-    if(health >0 && bal<4){
+    if(health >0 && bal<MOAB_START_INDEX){
       setSpeed(balloonSpeeds[health-1]);
       setRGB(balloonCols[health-1]);
     }
