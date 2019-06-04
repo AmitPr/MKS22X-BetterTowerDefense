@@ -17,8 +17,11 @@ public static final float[] balloonRadiiAsPercent = new float[]{0.7,0.7,0.7,0.7,
 public static final int REGEN_TICKCOUNT =120;
 public static PShape enemy;
 public String currentSelection;
+public ArrayList<Button> uiButtons=new ArrayList<Button>();
+private float uiWidth = width-height;
 void setup(){
   fullScreen(P2D);
+  uiWidth = width-height;
   frameRate(60);
   HEIGHT=height>width?width:height;
   WIDTH=height>width?width:height;
@@ -26,6 +29,13 @@ void setup(){
   enemy.setStroke(false);
   world = new World();
   currentSelection = "Dart Tower";
+  float halfway = height/2;
+  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Dart Tower"));
+  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Freeze Tower"));
+  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Tack Tower"));
+  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Wall"));
+  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,""));
+  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,""));
 }
 void draw(){
   if(!world.isDead){
@@ -40,12 +50,10 @@ void draw(){
   }else{
     fill(0);
     rect(height,0,width-height,height);
-    float uiWidth = width-height;
     fill(255);
     textSize(uiWidth/16);
     text("Tower Info",WIDTH+(uiWidth/2)-(textWidth("Tower Info")/2),height/20);
     stroke(255,255,255);
-    //rect(WIDTH+(uiWidth/10),height/18,width-(uiWidth/10),height/10);
     line(WIDTH+(uiWidth/10),height/15,width-(uiWidth/10),height/15);
     line(WIDTH+(uiWidth/10),height/15,WIDTH+(uiWidth/10),height/2.5);
     line(width-(uiWidth/10),height/15,width-(uiWidth/10),height/2.5);
@@ -53,15 +61,23 @@ void draw(){
     textSize(uiWidth/20);
     text(currentSelection,WIDTH+(uiWidth/2)-(textWidth(currentSelection)/2),height/10);
     noStroke();
-    switch(currentSelection){
-      case "Dart Tower":
-      break;
-      default:
-      break;
+    for(Button b : uiButtons){
+      if(b.mouseOver()){
+        b.setRGB(255,0,0);
+      }else{
+        b.setRGB(255,255,255);
+      }
+      b.display();
     }
   }
 }
 void mouseClicked(){
-  if(mouseX<WIDTH&&mouseY<HEIGHT)
+  if(mouseX<WIDTH&&mouseY<HEIGHT){
     world.onMouseClick();
+  }
+  for(Button b : uiButtons){
+    if(b.mouseOver()){
+      currentSelection=b.name;
+    }
+  }
 }

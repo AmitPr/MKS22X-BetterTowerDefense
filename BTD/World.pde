@@ -266,15 +266,23 @@ class World{
     int x = screenToWorldX(mouseX);
     
     if(map[y][x]==null){
-      if(key=='d'){
-        map[y][x]=new DartTower(x,y,100);
-      }else if (key=='w'){
-        map[y][x]=new WallTower(x,y,100); 
-      }else if (key=='f'){
-        map[y][x]=new FreezeTower(x,y,100);
-      }else if (key == 't'){
-        map[y][x]=new TackTower(x,y,100);
-      }else if (key == 'l'){
+      switch(currentSelection){
+        case "Dart Tower":
+          map[y][x]=new DartTower(x,y,100);
+        break;
+        case "Wall":
+          map[y][x]=new WallTower(x,y,100); 
+        break;
+        case "Freeze Tower":
+          map[y][x]=new FreezeTower(x,y,100);
+        break;
+        case "Tack Tower":
+          map[y][x]=new TackTower(x,y,100);
+        break;
+        default:
+        break;
+      }
+      if (key == 'l'){
         fast=!fast;
       }
       if(map[y][x]!=null){
