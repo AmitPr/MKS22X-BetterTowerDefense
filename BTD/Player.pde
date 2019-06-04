@@ -6,6 +6,7 @@ public class Player extends Tower{
       health=STARTING_HEALTH;
   }
   public void display(){
+    textSize(30);
     fill(255,0,0);
     rect(WIDTH/WORLD_WIDTH * x,HEIGHT/WORLD_HEIGHT*y,WIDTH/WORLD_WIDTH*2,HEIGHT/WORLD_HEIGHT*2*(STARTING_HEALTH-health)/STARTING_HEALTH);
     fill(0,255,0);

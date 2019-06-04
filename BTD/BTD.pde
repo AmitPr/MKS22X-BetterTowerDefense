@@ -16,6 +16,7 @@ public static final int MOAB_START_INDEX=5;
 public static final float[] balloonRadiiAsPercent = new float[]{0.7,0.7,0.7,0.7,0.7,1};
 public static final int REGEN_TICKCOUNT =120;
 public static PShape enemy;
+public String currentSelection;
 void setup(){
   fullScreen(P2D);
   frameRate(60);
@@ -24,6 +25,7 @@ void setup(){
   enemy = createShape(ELLIPSE,0,0,WIDTH/WORLD_WIDTH/2,HEIGHT/WORLD_HEIGHT/2);
   enemy.setStroke(false);
   world = new World();
+  currentSelection = "Dart Tower";
 }
 void draw(){
   if(!world.isDead){
@@ -32,12 +34,31 @@ void draw(){
       world.tick();
     }
   }
-  
   if(height > width){
-    
+    fill(0);
+    rect(0,width,height-width,width);
   }else{
     fill(0);
     rect(height,0,width-height,height);
+    float uiWidth = width-height;
+    fill(255);
+    textSize(uiWidth/16);
+    text("Tower Info",WIDTH+(uiWidth/2)-(textWidth("Tower Info")/2),height/20);
+    stroke(255,255,255);
+    //rect(WIDTH+(uiWidth/10),height/18,width-(uiWidth/10),height/10);
+    line(WIDTH+(uiWidth/10),height/15,width-(uiWidth/10),height/15);
+    line(WIDTH+(uiWidth/10),height/15,WIDTH+(uiWidth/10),height/2.5);
+    line(width-(uiWidth/10),height/15,width-(uiWidth/10),height/2.5);
+    line(WIDTH+(uiWidth/10),height/2.5,width-(uiWidth/10),height/2.5);
+    textSize(uiWidth/20);
+    text(currentSelection,WIDTH+(uiWidth/2)-(textWidth(currentSelection)/2),height/10);
+    noStroke();
+    switch(currentSelection){
+      case "Dart Tower":
+      break;
+      default:
+      break;
+    }
   }
 }
 void mouseClicked(){
