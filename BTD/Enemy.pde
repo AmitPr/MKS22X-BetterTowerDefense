@@ -160,6 +160,15 @@ abstract class Enemy{
          effects.remove(e);
          i--;
        }
+       if(e.name=="regen"){
+         e.reduceTicksLeft(1/frameRate);
+         if(e.getTicksLeft()<=0){
+           //println("gonna regen");
+           damage(e.getDamagePerEffect());
+           
+           e.setTicksLeft(e.getTicksTillNextEffect());
+         }
+       }
     }
     move(getDirection());
     enemy.setFill(color(r,g,b));

@@ -35,6 +35,7 @@ class World{
   }
   public ArrayList<WaveAction> getWave(int waveNum){
     ArrayList<WaveAction> toReturn = new ArrayList<WaveAction>();
+    Effect regen = new Effect(1,Integer.MAX_VALUE,"regen",REGEN_TICKCOUNT,REGEN_TICKCOUNT,-1);
     switch(waveNum){
       case 1:
         toReturn.add(new WaveAction(0,20,8));
@@ -103,7 +104,10 @@ class World{
         toReturn.add(new WaveAction(4,5,20));
       case 16:
         toReturn.add(new WaveAction(2,40,10));
-        toReturn.add(new WaveAction(3,8,20));  
+        toReturn.add(new WaveAction(3,8,20)); 
+      case 17:
+        
+        toReturn.add(new WaveAction(3,20,20,regen));   
       default:
       break;
     }

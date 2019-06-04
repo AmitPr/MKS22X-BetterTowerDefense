@@ -9,12 +9,22 @@ public class Balloon extends Enemy{
     this.bal=bal;
   }
   public void damage(int amt){
-    super.damage(amt);
-    player.money+=amt;
+    if(amt<0){
+      println("gonna regen");
+    }
+    this.health-=amt; 
+    if(amt>0){
+      player.money+=amt;
+    } 
+    if(this.health>balloonHealths[bal]){
+      this.health+=amt;
+    }
     if(health >0 && bal<MOAB_START_INDEX){
       setSpeed(balloonSpeeds[health-1]);
       setRGB(balloonCols[health-1]);
     }
+    
+    
   }
   
 }

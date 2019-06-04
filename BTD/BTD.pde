@@ -9,11 +9,12 @@ public static final int STARTING_MONEY=1000;
 public static final int STARTING_HEALTH=100;
 public static int[][] pathFindingMap;
 public static final int[] towerPrices = new int[]{200,20,350,300};
-public static final int[] balloonHealths = new int[]{1,2,3,4,50};
+public static final int[] balloonHealths = new int[]{1,2,3,4,5,50};
 public static final int[] balloonSpeeds = new int[]{8,6,5,4,3,16};
 public static final int[][] balloonCols = new int[][]{{255,0,0},{0,0,255},{0,255,0},{255,211,0},{255,0,90},{255,0,255}};
 public static final int MOAB_START_INDEX=5;
 public static final float[] balloonRadiiAsPercent = new float[]{0.7,0.7,0.7,0.7,0.7,1};
+public static final int REGEN_TICKCOUNT =120;
 public static PShape enemy;
 void setup(){
   fullScreen(P2D);
