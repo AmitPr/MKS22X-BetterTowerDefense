@@ -8,6 +8,7 @@ public class DartTower extends Tower{
    }
    public void display(){
      super.display();
+     image(towerImages[0],WIDTH/BTD.WORLD_WIDTH * x,HEIGHT/BTD.WORLD_HEIGHT*y,WIDTH/BTD.WORLD_WIDTH,HEIGHT/BTD.WORLD_HEIGHT);
    }
    public void fire(Enemy e){
      super.fire(e);

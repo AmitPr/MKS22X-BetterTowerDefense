@@ -7,7 +7,7 @@ public class FreezeTower extends Tower{
      this.price=towerPrices[2];
    }
    public void display(){
-     fill(r,g,b);
+    fill(r,g,b);
     timeTillNextFire-=1/frameRate;
     if(timeTillNextFire<=0){
       boolean hasFired = false;
@@ -27,7 +27,7 @@ public class FreezeTower extends Tower{
       else
         timeTillNextFire=0;
     }
-    rect(WIDTH/BTD.WORLD_WIDTH * x,HEIGHT/BTD.WORLD_HEIGHT*y,WIDTH/BTD.WORLD_WIDTH,HEIGHT/BTD.WORLD_HEIGHT);
+    image(towerImages[2],WIDTH/BTD.WORLD_WIDTH * x,HEIGHT/BTD.WORLD_HEIGHT*y,WIDTH/BTD.WORLD_WIDTH,HEIGHT/BTD.WORLD_HEIGHT);
    }
    public void fire(Enemy e){
       if(!e.hasEffect("freeze")){
