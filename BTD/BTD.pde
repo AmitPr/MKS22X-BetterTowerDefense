@@ -3,12 +3,14 @@ Player player;
 public static final int WORLD_WIDTH=20;
 public static final int WORLD_HEIGHT=20;
 public static int HEIGHT=0;
+public int waveNum = 1;
 public static int WIDTH=0;
 public static final float SELL_RATIO=0.8;
 public static final int STARTING_MONEY=1000;
 public static final int STARTING_HEALTH=100;
 public static int[][] pathFindingMap;
-public static final int[] towerPrices = new int[]{200,20,350,300};
+public static final String[] towerNames = new String[]{"Dart Tower","Wall","Tack Tower","Freeze Tower"};
+public static final int[] towerPrices = new int[]{200,20,250,300};
 public static PImage[] towerImages = new PImage[6];
 public static final int[] balloonHealths = new int[]{1,2,3,4,5,50};
 public static final int[] balloonSpeeds = new int[]{8,6,5,4,3,16};
@@ -18,8 +20,17 @@ public static final float[] balloonRadiiAsPercent = new float[]{0.7,0.7,0.7,0.7,
 public static final int REGEN_TICKCOUNT =120;
 public static PShape enemy;
 public String currentSelection;
+public int currentIndexOfSelection;
 public ArrayList<Button> uiButtons=new ArrayList<Button>();
 private float uiWidth = width-height;
+int indexOfTower(String towerName){
+  for(int i = 0; i < towerNames.length;i++){
+    if(towerNames[i].equals(towerName)){
+      return i;
+    }
+  }
+  return -1;
+}
 void setup(){
   fullScreen(P2D);
   towerImages[0]=new PImage();
@@ -42,6 +53,7 @@ void setup(){
   enemy.setStroke(false);
   world = new World();
   currentSelection = "Dart Tower";
+  
   float halfway = height/2;
   uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Dart Tower",towerImages[0]));
   uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Freeze Tower",towerImages[2]));
@@ -57,6 +69,7 @@ void draw(){
       world.tick();
     }
   }
+  currentIndexOfSelection = indexOfTower(currentSelection); 
   if(height > width){
     fill(0);
     rect(0,width,height-width,width);
@@ -71,9 +84,13 @@ void draw(){
     line(WIDTH+(uiWidth/10),height/15,WIDTH+(uiWidth/10),height/2.5);
     line(width-(uiWidth/10),height/15,width-(uiWidth/10),height/2.5);
     line(WIDTH+(uiWidth/10),height/2.5,width-(uiWidth/10),height/2.5);
+    text("Buy Price: $"+towerPrices[currentIndexOfSelection],WIDTH+(uiWidth/2)-(textWidth("Buy Price: $"+towerPrices[currentIndexOfSelection])/2),height/5);
+    textSize(uiWidth/18);
+    text("Sell Price: $"+int(towerPrices[currentIndexOfSelection]*SELL_RATIO),WIDTH+(uiWidth/2)-(textWidth("Sell Price: $"+towerPrices[currentIndexOfSelection])/2),height/4);
     textSize(uiWidth/20);
     text(currentSelection,WIDTH+(uiWidth/2)-(textWidth(currentSelection)/2),height/10);
     textSize(uiWidth/25);
+    text("Wave Number: " + str(waveNum-1),WIDTH+(uiWidth/10),height-(3*height/20));
     text("Money: " + player.money,WIDTH+(uiWidth/10),height-(height/20));
     text("Lives: " + player.health,WIDTH+(uiWidth/10),height-(2*height/20));
     noStroke();

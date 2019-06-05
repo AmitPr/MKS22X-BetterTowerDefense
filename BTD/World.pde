@@ -2,7 +2,7 @@ class World{
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   public ArrayList<WaveAction> currentWave= new ArrayList<WaveAction>();
-  public int waveNum = 1;
+  
   public Obstacle[][] map;
   public boolean fast = false;
   public boolean pause = true;
@@ -309,7 +309,7 @@ class World{
     fill(255,0,0);
     textAlign(CENTER);
     textSize(60);
-    text("Game over, you got to round "+waveNum,height/2,height/2);
+    text("Game over, you got to round "+str(waveNum-1),height/2,height/2);
     textSize(40);
     //text("hit R to play again",height/2,height/2+50);
     isDead=true;
