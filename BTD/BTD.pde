@@ -125,3 +125,12 @@ void mouseClicked(){
     }
   }
 }
+
+void keyPressed() {
+  if(key == 'm'){
+    player.money+=1000;
+  }
+  if(key == 'l'){
+    waveNum+=1;
+  }
+}
