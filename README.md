@@ -1,7 +1,7 @@
 # BetterTowerDefense (BTD) by No Clue
 A Tower Defense game where the enemies can choose their own path from their start to your home base (That you need to defend). The player can build walls, and build defensive towers which also can act as walls to route the enemies in any strategy they wish. Different types of towers have different statistics, and special effects which can be used.
 ## How To Run
-TODO
+The project must be run through Processing 3+. To open the game, you must open the BTD.pde file, and click play. To play the game, you start with 1000$, and earn money by popping balloons that come in waves. To pop these balloons you must place towers on the map and walls to route enemies in your strategy. To place towers, click on one of the tower buttons and click where on the map you would like to place it. To start press the pause/play button, which will play each wave of balloons (each wave pauses the game when it ends).
 ## Development Log
 #### 5/17/19
 Amit: Added most enemy variables and basic methods, as well as the same for world methods and variables.
@@ -30,3 +30,7 @@ Mario: Added MOABS -- "Boss" enemies. Minor balancing changes and fixes for MOAB
 Amit: Fixed really unusual bug in enemy pathfinding caused by towers being placed in specific positions around the enemy base, and then causing balloons to either get stuck inside the enemy base, and/or going through towers next to the enemy base.
 #### 5/30/19
 Amit: Optimized Enemy Drawing by changing them to color a PShape (currently a circle) and then draw that to screen, which is much more efficient than drawing a ellipse to the screen. This allowed the amount of enemies to be on screen to increase from ~80 to ~300. Also added first 10 waves of the game to the system.
+#### 5/31/19
+Amit: Added lots more enemy waves and fixed the fullscreen not working on school computers.
+#### 6/4/19
+Amit: Added Game UI and Tower selection buttons, as well as changed towers to use PNG photos for their textures. Added lots of labels and optimized a couple of things.
