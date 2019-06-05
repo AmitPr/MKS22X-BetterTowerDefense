@@ -42,7 +42,7 @@ abstract class Bullet{
     rotate(radians);
     translate(-screenX,-screenY);
     fill(0);
-    rect(screenX,screenY,(WIDTH/WORLD_WIDTH*0.1),(HEIGHT/WORLD_HEIGHT*0.1));
+    rect(screenX,screenY,(WIDTH/WORLD_WIDTH*0.2),(HEIGHT/WORLD_HEIGHT*0.2));
     popMatrix();
   }
   private void damageCheck(){
