@@ -1,7 +1,7 @@
 # BetterTowerDefense (BTD) by No Clue
 A Tower Defense game where the enemies can choose their own path from their start to your home base (That you need to defend). The player can build walls, and build defensive towers which also can act as walls to route the enemies in any strategy they wish. Different types of towers have different statistics, and special effects which can be used.
 ## How To Run
-The project must be run through Processing 3+. To open the game, you must open the BTD.pde file, and click play. To play the game, you start with 1000$, and earn money by popping balloons that come in waves. To pop these balloons you must place towers on the map and walls to route enemies in your strategy. To place towers, click on one of the tower buttons and click where on the map you would like to place it. To start press the pause/play button, which will play each wave of balloons (each wave pauses the game when it ends).
+The project must be run through Processing 3+. To open the game, you must open the BTD.pde file, and click play. To play the game, you start with $1000, and earn money by popping balloons that come in waves. To pop these balloons you must place towers on the map and walls to route enemies in your strategy. To place towers, click on one of the tower buttons and click where on the map you would like to place it. To start press the pause/play button, which will play each wave of balloons (each wave pauses the game when it ends).
 ## Development Log
 #### 5/17/19
 Amit: Added most enemy variables and basic methods, as well as the same for world methods and variables.
