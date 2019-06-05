@@ -40,3 +40,4 @@ Mario: Added tack towers and more design changes.
 Mario: More rounds, game balancing, finishing touches
 #### 6/4/19
 Amit: Added Game UI and Tower selection buttons, as well as changed towers to use PNG photos for their textures. Added lots of labels and optimized a couple of things.
+Mario: Final touches, helped with UI. Added some features for the presentation that wouldn't be in real game.
