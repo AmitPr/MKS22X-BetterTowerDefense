@@ -39,12 +39,12 @@ void setup(){
   world = new World();
   currentSelection = "Dart Tower";
   float halfway = height/2;
-  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Dart Tower"));
-  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Freeze Tower"));
-  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Tack Tower"));
-  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Wall"));
-  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,""));
-  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,""));
+  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Dart Tower",towerImages[0]));
+  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Freeze Tower",towerImages[2]));
+  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Tack Tower",towerImages[3]));
+  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Wall",towerImages[1]));
+  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"",null));
+  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"",null));
 }
 void draw(){
   if(!world.isDead){
@@ -69,6 +69,9 @@ void draw(){
     line(WIDTH+(uiWidth/10),height/2.5,width-(uiWidth/10),height/2.5);
     textSize(uiWidth/20);
     text(currentSelection,WIDTH+(uiWidth/2)-(textWidth(currentSelection)/2),height/10);
+    textSize(uiWidth/25);
+    text("Money: " + player.money,WIDTH+(uiWidth/10),height-(height/20));
+    text("Lives: " + player.health,WIDTH+(uiWidth/10),height-(2*height/20));
     noStroke();
     for(Button b : uiButtons){
       if(b.mouseOver()){
