@@ -9,9 +9,6 @@ public class Balloon extends Enemy{
     this.bal=bal;
   }
   public void damage(int amt){
-    if(amt<0){
-      println("gonna regen");
-    }
     this.health-=amt; 
     if(amt>0){
       player.money+=amt;

@@ -12,7 +12,7 @@ public static int[][] pathFindingMap;
 public static final String[] towerNames = new String[]{"Dart Tower","Wall","Tack Tower","Freeze Tower"};
 public static final int[] towerPrices = new int[]{200,20,250,300};
 public static PImage[] towerImages = new PImage[6];
-public static final int[] balloonHealths = new int[]{1,2,3,4,5,50};
+public static final int[] balloonHealths = new int[]{1,2,3,4,5,150};
 public static final int[] balloonSpeeds = new int[]{8,6,5,4,3,16};
 public static final int[][] balloonCols = new int[][]{{255,0,0},{0,0,255},{0,255,0},{255,211,0},{255,0,90},{255,0,255}};
 public static final int MOAB_START_INDEX=5;

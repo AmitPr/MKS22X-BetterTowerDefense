@@ -75,40 +75,48 @@ class World{
       break;
       case 11:
         toReturn.add(new WaveAction(0,6,5));
-        toReturn.add(new WaveAction(1,12,10));
-        toReturn.add(new WaveAction(2,12,10));
-        toReturn.add(new WaveAction(3,3,20));
+        toReturn.add(new WaveAction(1,12,6));
+        toReturn.add(new WaveAction(2,12,6));
+        toReturn.add(new WaveAction(3,3,7));
       break;
       case 12:
-        toReturn.add(new WaveAction(1,15,8));
-        toReturn.add(new WaveAction(2,10,9));
-        toReturn.add(new WaveAction(3,5,10));
+        toReturn.add(new WaveAction(1,15,4));
+        toReturn.add(new WaveAction(2,10,5));
+        toReturn.add(new WaveAction(3,5,6));
       break;
       case 13:
         toReturn.add(new WaveAction(1,50,2));
         toReturn.add(new WaveAction(2,23,6));
       break;
       case 14:
-        toReturn.add(new WaveAction(0,49,5));
-        toReturn.add(new WaveAction(1,15,10));
-        toReturn.add(new WaveAction(2,10,10));
-        toReturn.add(new WaveAction(3,9,20));
+        toReturn.add(new WaveAction(0,49,3));
+        toReturn.add(new WaveAction(1,15,4));
+        toReturn.add(new WaveAction(2,10,4));
+        toReturn.add(new WaveAction(3,9,5));
+      break;  
       case 15:
-        toReturn.add(new WaveAction(0,20,5));
-        toReturn.add(new WaveAction(1,15,10));
-        toReturn.add(new WaveAction(2,12,10));
-        toReturn.add(new WaveAction(3,10,20));
-        toReturn.add(new WaveAction(4,5,20));
+        toReturn.add(new WaveAction(0,20,3));
+        toReturn.add(new WaveAction(1,15,4));
+        toReturn.add(new WaveAction(2,12,4));
+        toReturn.add(new WaveAction(3,10,5));
+        toReturn.add(new WaveAction(4,5,5));
+      break;  
       case 16:
-        toReturn.add(new WaveAction(2,40,10));
-        toReturn.add(new WaveAction(3,8,20)); 
+        toReturn.add(new WaveAction(2,40,3));
+        toReturn.add(new WaveAction(3,8,5)); 
+      break;  
       case 17:
-        toReturn.add(new WaveAction(3,20,20,regen));   
+        toReturn.add(new WaveAction(3,20,20,regen));
+      break;
+      case 18:
+        toReturn.add(new WaveAction(3,15,10,regen));
+        toReturn.add(new WaveAction(4,20,10,regen));
+      break;
       default:
         toReturn.add(new WaveAction(0,curRed,10));
         toReturn.add(new WaveAction(1,curBlue,10));
         toReturn.add(new WaveAction(2,curGreen,10));
-        toReturn.add(new WaveAction(3,curYellow,10));
+        toReturn.add(new WaveAction(3,curYellow,10,regen));
         toReturn.add(new WaveAction(4,curPink,10));
         toReturn.add(new WaveAction(5,curMoabs,15));
       break;
