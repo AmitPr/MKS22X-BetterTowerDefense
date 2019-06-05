@@ -43,11 +43,11 @@ void setup(){
   uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Freeze Tower",towerImages[2]));
   uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Tack Tower",towerImages[3]));
   uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Wall",towerImages[1]));
-  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"",null));
+  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"",loadImage("fast.png")));
   uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"",null));
 }
 void draw(){
-  if(!world.isDead){
+  if(!world.isDead && !world.pause){
     world.tick();
     if(world.fast){
       world.tick();
@@ -89,7 +89,11 @@ void mouseClicked(){
   }
   for(Button b : uiButtons){
     if(b.mouseOver()){
-      currentSelection=b.name;
+      if(b.name!=""){
+        currentSelection=b.name;
+      }else{
+       world.fast=!world.fast; 
+      }
     }
   }
 }

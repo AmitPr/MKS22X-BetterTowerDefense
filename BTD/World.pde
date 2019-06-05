@@ -7,6 +7,7 @@ class World{
   public int waveNum = 1;
   public Obstacle[][] map;
   public boolean fast = false;
+  public boolean pause = false;
   public boolean isDead = false;
   public World(){
     pathFindingMap = new int[BTD.WORLD_HEIGHT][BTD.WORLD_WIDTH];
