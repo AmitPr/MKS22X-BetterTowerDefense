@@ -1,6 +1,4 @@
 class World{
-  
-  
   public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
   public ArrayList<WaveAction> currentWave= new ArrayList<WaveAction>();
@@ -9,6 +7,12 @@ class World{
   public boolean fast = false;
   public boolean pause = true;
   public boolean isDead = false;
+  public int curRed=30;
+  public int curBlue=25;
+  public int curGreen=20;
+  public int curYellow=10;
+  public int curPink=5;
+  public int curMoabs=1;
   public World(){
     pathFindingMap = new int[BTD.WORLD_HEIGHT][BTD.WORLD_WIDTH];
     for(int i = 0; i < BTD.WORLD_HEIGHT; i ++){
@@ -99,9 +103,14 @@ class World{
         toReturn.add(new WaveAction(2,40,10));
         toReturn.add(new WaveAction(3,8,20)); 
       case 17:
-        
         toReturn.add(new WaveAction(3,20,20,regen));   
       default:
+        toReturn.add(new WaveAction(0,curRed,10));
+        toReturn.add(new WaveAction(1,curBlue,10));
+        toReturn.add(new WaveAction(2,curGreen,10));
+        toReturn.add(new WaveAction(3,curYellow,10));
+        toReturn.add(new WaveAction(4,curPink,10));
+        toReturn.add(new WaveAction(5,curMoabs,15));
       break;
     }
     /*toReturn.add(new WaveAction(0,waveNum,20+60/waveNum));
@@ -208,6 +217,12 @@ class World{
           uiButtons.get(uiButtons.size()-1).icon=towerImages[4];
         }else if(enemies.size()==0&&firstTickDone&&!pause){
           currentWave=getWave(waveNum++);
+          curRed+=8;
+          curBlue+=6;
+          curGreen+=5;
+          curYellow+=4;
+          curPink+=3;
+          curMoabs+=(random(10)<1?1:0);
           firstTickDone=false;
         }
       }
