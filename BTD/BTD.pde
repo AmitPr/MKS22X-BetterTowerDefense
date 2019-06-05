@@ -9,7 +9,7 @@ public static final int STARTING_MONEY=1000;
 public static final int STARTING_HEALTH=100;
 public static int[][] pathFindingMap;
 public static final int[] towerPrices = new int[]{200,20,350,300};
-public static PImage[] towerImages = new PImage[4];
+public static PImage[] towerImages = new PImage[6];
 public static final int[] balloonHealths = new int[]{1,2,3,4,5,50};
 public static final int[] balloonSpeeds = new int[]{8,6,5,4,3,16};
 public static final int[][] balloonCols = new int[][]{{255,0,0},{0,0,255},{0,255,0},{255,211,0},{255,0,90},{255,0,255}};
@@ -30,6 +30,10 @@ void setup(){
   towerImages[2]=loadImage("freeze.png");
   towerImages[3]=new PImage();
   towerImages[3]=loadImage("tack.png");
+  towerImages[4]=new PImage();
+  towerImages[4]=loadImage("play.png");
+  towerImages[5]=new PImage();
+  towerImages[5]=loadImage("pause.png");
   uiWidth = width-height;
   frameRate(60);
   HEIGHT=height>width?width:height;
@@ -43,11 +47,11 @@ void setup(){
   uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway-height/20,3.5*uiWidth/10,height/20,"Freeze Tower",towerImages[2]));
   uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Tack Tower",towerImages[3]));
   uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/40,3.5*uiWidth/10,height/20,"Wall",towerImages[1]));
-  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"",loadImage("fast.png")));
-  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"",null));
+  uiButtons.add(new Button(WIDTH+(uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"FF",loadImage("fast.png")));
+  uiButtons.add(new Button(WIDTH+(5.5*uiWidth/10),halfway+height/10,3.5*uiWidth/10,height/20,"PP",towerImages[4]));
 }
 void draw(){
-  if(!world.isDead && !world.pause){
+  if(!world.isDead){
     world.tick();
     if(world.fast){
       world.tick();
@@ -89,10 +93,17 @@ void mouseClicked(){
   }
   for(Button b : uiButtons){
     if(b.mouseOver()){
-      if(b.name!=""){
+      if(!b.name.equalsIgnoreCase("FF")&&!b.name.equalsIgnoreCase("PP")){
         currentSelection=b.name;
       }else{
-       world.fast=!world.fast; 
+        if(b.name=="FF"){
+           world.fast=!world.fast; 
+        }else{
+           if(b.icon==towerImages[4]){
+             b.icon=towerImages[5];
+             world.pause=false;
+           }
+        }
       }
     }
   }

@@ -7,7 +7,7 @@ class World{
   public int waveNum = 1;
   public Obstacle[][] map;
   public boolean fast = false;
-  public boolean pause = false;
+  public boolean pause = true;
   public boolean isDead = false;
   public World(){
     pathFindingMap = new int[BTD.WORLD_HEIGHT][BTD.WORLD_WIDTH];
@@ -24,14 +24,6 @@ class World{
       player=new Player(BTD.WORLD_WIDTH-2,BTD.WORLD_HEIGHT-2,100);
       
     map[0][0]=map[0][1]=map[1][0]=map[1][1]=new EnemyBase(0,0,100);
-    for(int y = 0; y < map.length; y++){
-      for(int x = 0; x < map[y].length;x++){
-        if(map[y][x]==null)
-        if(random(0)>1){
-         map[y][x]=new DartTower(x,y,100);
-        }
-      }
-    }
     updatePathFindingMap();
   }
   public ArrayList<WaveAction> getWave(int waveNum){
@@ -142,15 +134,6 @@ class World{
     while(lastVisitedCoords.size()>0){
       ArrayList<int[]> justVisitedCoords = new ArrayList<int[]>();
       for(int[] coords : lastVisitedCoords){
-        
-        if((coords[1]==5 && coords[0]==3) && (map[coords[0]][coords[1]]==null)){
-          println("our special square");
-          println(isValidCoord(coords[1],coords[0]+1) && newPathFindingMap[coords[0]+1][coords[1]] == -1 && (((map[coords[0]+1][coords[1]]==null))||(coords[0]+1<2 && coords[1]<2)));
-          println(isValidCoord(coords[1],coords[0]-1) && newPathFindingMap[coords[0]-1][coords[1]] == -1 && (((map[coords[0]-1][coords[1]]==null))||(coords[0]-1<2 && coords[1]<2)));
-          println(isValidCoord(coords[1]+1,coords[0]) && newPathFindingMap[coords[0]][coords[1]+1] == -1 && (((map[coords[0]][coords[1]+1]==null))||(coords[0]<2 && coords[1]+1<2)));
-          println(isValidCoord(coords[1]-1,coords[0]) && newPathFindingMap[coords[0]][coords[1]-1] == -1 && (((map[coords[0]][coords[1]-1]==null))||(coords[0]<2 && coords[1]-1<2)));
-        }
-        
         if(isValidCoord(coords[1],coords[0]+1) && newPathFindingMap[coords[0]+1][coords[1]] == -1 && (((map[coords[0]+1][coords[1]]==null))||(coords[0]+1<2 && coords[1]<2))){
           newPathFindingMap[coords[0]+1][coords[1]] = newPathFindingMap[coords[0]][coords[1]]+1;
           int[] thisCoord = {coords[0]+1,coords[1]};
@@ -208,6 +191,7 @@ class World{
    return map[my][mx];
   }
   public int tickCount=0;
+  private boolean firstTickDone = false;
   public void tick(){
     tickCount++;
     background(46,125,50);
@@ -218,9 +202,14 @@ class World{
          currentWave.remove(0); 
         }
       }else{
-        
-        if(enemies.size()==0)
+        if(enemies.size()==0&&!firstTickDone){
+          pause=true;
+          firstTickDone=true;
+          uiButtons.get(uiButtons.size()-1).icon=towerImages[4];
+        }else if(enemies.size()==0&&firstTickDone&&!pause){
           currentWave=getWave(waveNum++);
+          firstTickDone=false;
+        }
       }
     }
     for(int y = 0; y < map.length; y++){
@@ -282,9 +271,6 @@ class World{
         break;
         default:
         break;
-      }
-      if (key == 'l'){
-        fast=!fast;
       }
       if(map[y][x]!=null){
       if(map[y][x].price>player.money){
